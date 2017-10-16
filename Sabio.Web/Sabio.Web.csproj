@@ -210,6 +210,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\ExampleEntityController.cs" />
     <Compile Include="Controllers\Api\Tests\TestAuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -234,6 +235,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\index.html" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
@@ -248,6 +250,11 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Scripts\components\admin-edit-example\main.html" />
+    <Content Include="Scripts\components\admin-edit-example\main.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\route-setup.js" />
+    <Content Include="Scripts\services\exampleEntityService.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />

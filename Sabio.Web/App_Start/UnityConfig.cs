@@ -3,6 +3,7 @@ using Sabio.Data;
 using Sabio.Data.Providers;
 using Sabio.Services;
 using Sabio.Services.Cryptography;
+using Sabio.Services.Interfaces;
 using Sabio.Web.Core.Services;
 using System.Configuration;
 using System.Security.Principal;
@@ -31,6 +32,9 @@ namespace Sabio.Web
 
             container.RegisterType<ICryptographyService, Base64StringCryptographyService>(new ContainerControlledLifetimeManager());
 
+            // In English, this means:
+            // "when someone asks for a IExampleEntityService, give them a new instance of ExampleEntityService"
+            container.RegisterType<IExampleEntityService, ExampleEntityService>();
 
             container.RegisterType<IDataProvider, SqlDataProvider>(
                 new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
