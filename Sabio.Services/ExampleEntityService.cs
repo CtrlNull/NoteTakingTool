@@ -39,6 +39,7 @@ namespace Sabio.Services
 
                 SqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = "example_entity__create"; // #1
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@stuff", request.Stuff); // #2
                 cmd.Parameters.AddWithValue("@thing", request.Thing);
