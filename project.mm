@@ -83,5 +83,8 @@
 </node>
 </node>
 <node CREATED="1508113364255" ID="ID_1394672658" MODIFIED="1508113366683" POSITION="right" TEXT="media uploader"/>
+<node CREATED="1508257530030" ID="ID_1564885122" MODIFIED="1508257533624" POSITION="left" TEXT="visualization">
+<node CREATED="1508257534302" ID="ID_1261880697" MODIFIED="1508257540131" TEXT="calendar view (similar to GitHub)"/>
+</node>
 </node>
 </map>
