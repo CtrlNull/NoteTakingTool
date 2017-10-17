@@ -118,5 +118,60 @@ namespace Sabio.Services
 
             return results;
         }
+
+        public ExampleEntity GetById(int id)
+        {
+            ExampleEntity result = null;
+
+            /*
+            
+            // This is the plain-vanilla ADO.NET version of the dataProvider call below
+
+            using (SqlConnection con = new SqlConnection("..."))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "example_entity__getbyid";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                using (IDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        result = new ExampleEntity();
+                        result.Id = id;
+                        result.DateCreated = reader.GetDateTime(0);
+                        result.DateModified = reader.GetDateTime(1);
+                        result.Stuff = reader.GetString(2);
+                        result.Thing = reader.GetInt32(3);
+                    }
+                }
+            }
+
+            return result;
+            */
+
+            dataProvider.ExecuteCmd(
+                "example_entity__getbyid",
+                inputParamMapper: delegate (SqlParameterCollection parameters)
+                {
+                    parameters.AddWithValue("@id", id);
+                },
+                singleRecordMapper: delegate (IDataReader reader, short set)
+                {
+                    result = new ExampleEntity();
+                    result.Id = id;
+                    result.DateCreated = reader.GetDateTime(0);
+                    result.DateModified = reader.GetDateTime(1);
+                    result.Stuff = reader.GetString(2);
+                    result.Thing = reader.GetInt32(3);
+                }
+            );
+
+            return result;
+        }
     }
 }
