@@ -1,9 +1,11 @@
 ﻿using Sabio.Data.Providers;
 using Sabio.Models.Domain;
+using Sabio.Models.Requests;
 using Sabio.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +23,28 @@ namespace Sabio.Services
         {
             // 3. store the parameter in the field
             this.dataProvider = dataProvider;
+        }
+
+        public int Create(ExampleEntityCreateRequest request)
+        {
+            int id = 0;
+
+            dataProvider.ExecuteNonQuery(
+                "example_entity__create",
+                inputParamMapper: delegate (SqlParameterCollection parameters)
+                {
+                    parameters.AddWithValue("@stuff", request.Stuff);
+                    parameters.AddWithValue("@thing", request.Thing);
+
+                    SqlParameter idParam = parameters.Add("@id", SqlDbType.Int);
+                    idParam.Direction = ParameterDirection.Output;
+                },
+                returnParameters: delegate (SqlParameterCollection parameters)
+                {
+                    id = (int)parameters["@id"].Value;
+                });
+
+            return id;
         }
 
         public List<ExampleEntity> GetAll()

@@ -49,6 +49,7 @@
     <Compile Include="Domain\UserBase.cs" />
     <Compile Include="Interfaces\IUserAuthData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\ExampleEntityCreateRequest.cs" />
     <Compile Include="Responses\BaseResponse.cs" />
     <Compile Include="Responses\ErrorResponse.cs" />
     <Compile Include="Responses\ItemResponse.cs" />
@@ -59,9 +60,7 @@
     <Compile Include="ViewModels\JsViewModel.cs" />
     <Compile Include="ViewModels\SabioViewModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Requests\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

@@ -1,4 +1,6 @@
 ﻿using Sabio.Models.Domain;
+using Sabio.Models.Requests;
+using Sabio.Models.Responses;
 using Sabio.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -21,9 +23,19 @@ namespace Sabio.Web.Content
         }
 
         [Route, HttpGet]
-        public List<ExampleEntity> GetAll()
+        public ItemsResponse<ExampleEntity> GetAll()
         {
-            return exampleEntityService.GetAll();
+            ItemsResponse<ExampleEntity> itemsResponse = new ItemsResponse<ExampleEntity>();
+            itemsResponse.Items = exampleEntityService.GetAll();
+            return itemsResponse;
+        }
+
+        [Route, HttpPost]
+        public ItemResponse<int> Create(ExampleEntityCreateRequest req)
+        {
+            ItemResponse<int> itemResponse = new ItemResponse<int>();
+            itemResponse.Item = exampleEntityService.Create(req);
+            return itemResponse;
         }
     }
 }
