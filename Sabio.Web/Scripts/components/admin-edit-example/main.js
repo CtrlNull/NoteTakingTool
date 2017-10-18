@@ -3,7 +3,7 @@
 
     angular.module(APPNAME)
         .component('adminEditExample', {
-            templateUrl: '/Scripts/components/admin-edit-example',
+            templateUrl: '/Scripts/components/admin-edit-example/main.html',
             controller: 'adminEditExampleController'
         });
 
