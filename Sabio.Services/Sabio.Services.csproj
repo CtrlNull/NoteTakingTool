@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache\MemoryCacheDefault.cs" />
+    <Compile Include="ExampleCSharpFileStructure.cs" />
     <Compile Include="Cryptography\Base64StringCryptographyService.cs" />
     <Compile Include="ExampleEntityService.cs" />
     <Compile Include="Interfaces\Cryptography\ICryptographyService.cs" />
