@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\ExampleEntity.cs" />
+    <Compile Include="Domain\Token.cs" />
     <Compile Include="Domain\UserBase.cs" />
     <Compile Include="Interfaces\IUserAuthData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

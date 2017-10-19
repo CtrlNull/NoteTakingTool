@@ -237,6 +237,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\admin-index.html" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\token-index.html" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -252,9 +253,15 @@
     </Content>
     <Content Include="Scripts\components\admin-edit-example\main.html" />
     <Content Include="Scripts\components\admin-edit-example\main.js" />
+    <Content Include="Scripts\components\token\main.html" />
+    <Content Include="Scripts\components\token\main.js" />
+    <Content Include="Scripts\components\token\token-main.html" />
+    <Content Include="Scripts\components\token\token-main.js" />
+    <Content Include="Scripts\components\token\token-route-setup.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\route-setup.js" />
     <Content Include="Scripts\services\exampleEntityService.js" />
+    <Content Include="Scripts\services\token-service.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
