@@ -31,11 +31,25 @@ namespace Sabio.Web.Content
         }
 
         [Route, HttpPost]
-        public ItemResponse<int> Create(ExampleEntityCreateRequest req)
+        public HttpResponseMessage Create(ExampleEntityCreateRequest req)
         {
+            if (req == null)
+            {
+                ModelState.AddModelError("", "Missing body data.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+
+            // Declare a variable of type "ItemResponse of int" named itemResponse,
+            // then, create a new ItemResponse of int and put it into that variable.
+
             ItemResponse<int> itemResponse = new ItemResponse<int>();
             itemResponse.Item = exampleEntityService.Create(req);
-            return itemResponse;
+
+            return Request.CreateResponse(HttpStatusCode.Created, itemResponse);
         }
     }
 }
