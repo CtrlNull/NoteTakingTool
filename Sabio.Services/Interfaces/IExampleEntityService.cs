@@ -8,5 +8,6 @@ namespace Sabio.Services.Interfaces
     {
         List<ExampleEntity> GetAll();
         int Create(ExampleEntityCreateRequest request);
+        ExampleEntity GetById(int id);
     }
 }
