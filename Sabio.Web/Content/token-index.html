@@ -6,13 +6,24 @@
     <link href="bootstrap.css" rel="stylesheet" />
 </head>
 <body>
+    <div ng-controller="APPNAME">
+        <div ng-app="APPNAME as a">
+
+        </div>
+    </div>
+
+    <ui-view></ui-view>
+
+
     <!-- ======================= Scripts ======================= -->
     <script src="../Scripts/jquery-3.1.1.js"></script>
     <script src="../Scripts/angular.js"></script>
     <script src="../Scripts/angular-ui-router.js"></script>
     <script src="../Scripts/bootstrap.js"></script>
     <!-- ======= <added by Ralph_Fonz ======-->
-    <script src="main.js"></script>
+    <script src="../Scripts/components/token/main.js"></script>
+    <script src="../Scripts/components/token/token-route-setup.js"></script>
+    <script src="../Scripts/main.js"></script>
     <!-- ======================================================= -->
 </body>
 </html>

@@ -1,4 +1,5 @@
 ﻿using Sabio.Models.Domain;
+using Sabio.Models.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace Sabio.Services.Interfaces
     public interface  ITokenService
     {
         List<Token> GetAll();
-        //int Create(token request);
+        int Create(TokenRequest request);
     }
 }
