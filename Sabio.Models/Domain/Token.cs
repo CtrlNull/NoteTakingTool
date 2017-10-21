@@ -10,6 +10,6 @@ namespace Sabio.Models.Domain
     {
        public int id { get; set; }
         public string service_name { get; set; }
-        public long token { get; set; }
+        public string token { get; set; }
     }
 }

@@ -16,7 +16,6 @@
         /admin/entity/tags/123 (edit a specific tag, the route is actually defined as /admin/entity/tags/{id})
         /admin/entity/tags/new (screen to create a new tag)
         */
-
         $stateProvider.state({
             name: 'edit-exampleentity',
             url: '/admin/entity/example',
@@ -26,6 +25,16 @@
             name: "token"
             , url: "/admin/entity/tokengetall"
             , component: "adminTokenGet"
+        })
+        $stateProvider.state({
+            name: "tokenGetById"
+            , url: "/admin/entity/tokenGetById"
+            , component: "adminTokenGetById"
+        })
+        $stateProvider.state({
+            name: "tokenDelete"
+            , url: "/admin/entity/tokenDelete"
+            , compnent: "adminTokenDelete"
         });
     }
 })();

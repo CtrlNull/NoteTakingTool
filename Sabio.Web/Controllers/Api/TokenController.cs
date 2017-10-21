@@ -17,12 +17,10 @@ namespace Sabio.Web.Controllers.Api
     public class TokenController : ApiController
     {
         readonly ITokenService tokenService;
-
         public TokenController(ITokenService tokenService)
         {
             this.tokenService = tokenService;
         }
-
         [Route, HttpGet]
         public ItemsResponse<Token> GetAll()
         {
@@ -30,7 +28,6 @@ namespace Sabio.Web.Controllers.Api
             itemsResponse.Items = tokenService.GetAll();
             return itemsResponse;
         }
-
         [Route, HttpPost]
         public HttpResponseMessage Create(TokenRequest req)
         {

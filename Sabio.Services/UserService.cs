@@ -25,8 +25,6 @@ namespace Sabio.Services
             _dataProvider = dataProvider;
             _cryptographyService = cryptographyService;
         }
-
-
         public bool LogIn(string email, string password)
         {
             bool isSuccessful = false;
@@ -45,12 +43,8 @@ namespace Sabio.Services
                     isSuccessful = true;
                 }
             }
-
             return isSuccessful;
-
         }
-
-
         public bool LogInTest(string email, string password, int id, string[] roles = null)
         {
             bool isSuccessful = false;
@@ -69,10 +63,7 @@ namespace Sabio.Services
             _authenticationService.LogIn(response, new Claim[] { tenant, fullName });
 
             return isSuccessful;
-
         }
-
-
         public int Create(object userModel)
         {
             int userId = 0;

@@ -55,7 +55,7 @@ namespace Sabio.Services
                    Token result = new Token();
                    result.id = reader.GetInt32(0);
                    result.service_name = reader.GetString(1);
-                   result.token = reader.GetInt32(2); // check! referenced as long!!!!
+                   result.token = reader.GetString(2); // check! referenced as long!!!!
 
                    results.Add(result);
                });
@@ -75,7 +75,7 @@ namespace Sabio.Services
                     result = new Token();
                     result.id = id;
                     result.service_name = reader.GetString(1);
-                    result.token = reader.GetInt32(2);
+                    result.token = reader.GetString(2);
                 }
             );
             return result;
