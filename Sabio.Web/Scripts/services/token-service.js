@@ -11,7 +11,7 @@
         function _getAll() {
             return $http({
                 method: "GET"
-                , url: "c44/third_party_token"
+                , url: "api/third_party_token"
             });
         }
     }

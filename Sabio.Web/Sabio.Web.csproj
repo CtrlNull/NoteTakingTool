@@ -256,9 +256,7 @@
     <Content Include="Scripts\components\admin-edit-example\main.js" />
     <Content Include="Scripts\components\token\main.html" />
     <Content Include="Scripts\components\token\main.js" />
-    <Content Include="Scripts\components\token\token-main.html" />
     <Content Include="Scripts\components\token\token-main.js" />
-    <Content Include="Scripts\components\token\token-route-setup.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\route-setup.js" />
     <Content Include="Scripts\services\exampleEntityService.js" />

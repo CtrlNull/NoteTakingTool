@@ -21,6 +21,11 @@
             name: 'edit-exampleentity',
             url: '/admin/entity/example',
             component: 'adminEditExample'
+        })
+        $stateProvider.state({
+            name: "token"
+            , url: "/admin/entity/tokengetall"
+            , component: "adminTokenGet"
         });
     }
 })();
