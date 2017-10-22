@@ -73,7 +73,7 @@ namespace Sabio.Services
                 singleRecordMapper: delegate (IDataReader reader, short set)
                 {
                     result = new Token();
-                    result.id = id;
+                    result.id = reader.GetInt32(0);
                     result.service_name = reader.GetString(1);
                     result.token = reader.GetString(2);
                 }

@@ -10,7 +10,12 @@ namespace Sabio.Services.Interfaces
 {
     public interface  ITokenService
     {
+        // methods supported
         List<Token> GetAll();
+        Token GetById(int id);
+        //List<Token> Delete();
+        //List<Token> Create();
+        //List<Token> Update();
         int Create(TokenRequest request);
     }
 }

@@ -83,9 +83,6 @@ namespace Sabio.Services
 
             return userId;
         }
-
-
-
         /// <summary>
         /// Gets the Data call to get a give user
         /// </summary>

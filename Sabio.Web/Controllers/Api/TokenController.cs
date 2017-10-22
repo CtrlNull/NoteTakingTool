@@ -21,6 +21,7 @@ namespace Sabio.Web.Controllers.Api
         {
             this.tokenService = tokenService;
         }
+        // =================== <Get All> ===================== //
         [Route, HttpGet]
         public ItemsResponse<Token> GetAll()
         {
@@ -28,6 +29,13 @@ namespace Sabio.Web.Controllers.Api
             itemsResponse.Items = tokenService.GetAll();
             return itemsResponse;
         }
+        // =================== <Get By Id> ==================== //
+        [Route("{id:int}"), HttpGet]
+        public Token GetById(int id)
+        {
+            return tokenService.GetById(id);
+        }
+        // =================== <Create> ====================== //
         [Route, HttpPost]
         public HttpResponseMessage Create(TokenRequest req)
         {
@@ -46,5 +54,6 @@ namespace Sabio.Web.Controllers.Api
 
             return Request.CreateResponse(HttpStatusCode.Created, itemResponse);
         }
+        // =================== < Delete > ==================== //
     }
 }

@@ -8,7 +8,7 @@ namespace Sabio.Models.Domain
 {
     public class Token
     {
-       public int id { get; set; }
+        public int id { get; set; }
         public string service_name { get; set; }
         public string token { get; set; }
     }
