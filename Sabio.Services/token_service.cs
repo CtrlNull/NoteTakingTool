@@ -22,25 +22,6 @@ namespace Sabio.Services
             // store the paramenter in the field
             this.dataProvider = dataProvider;
         }
-        // ========================== { Create } ========================== //
-        public int Create(TokenRequest request)
-        {
-            int id = 0;
-            dataProvider.ExecuteNonQuery(
-            "token_create", inputParamMapper: delegate (SqlParameterCollection parameters)
-            {
-                parameters.AddWithValue("@id", request.id);
-                parameters.AddWithValue("@service_name", request.service_name);
-
-                SqlParameter idParam = parameters.Add("@id", SqlDbType.Int);
-                idParam.Direction = ParameterDirection.Output;
-            },
-            returnParameters: delegate (SqlParameterCollection paramenters)
-            {
-                id = (int)paramenters["@id"].Value;
-            });
-            return id;
-        }
         // ========================== { Get All } ========================== //
         public List<Token> GetAll()
         {
@@ -83,6 +64,26 @@ namespace Sabio.Services
             );
             return result;
         }
+        // ========================== { Create } ========================== //
+        public int Create(TokenRequestCreate request)
+        {
+            int id = 0;
+            dataProvider.ExecuteNonQuery(
+            "third_party_token_create", inputParamMapper: delegate (SqlParameterCollection parameters)
+            {
+                parameters.AddWithValue("@service_name", request.ServiceName);
+                parameters.AddWithValue("@token", request.Token);
+
+                SqlParameter idParam = parameters.Add("@id", SqlDbType.Int);
+                idParam.Direction = ParameterDirection.Output;
+            },
+            returnParameters: delegate (SqlParameterCollection paramenters)
+            {
+                id = (int)paramenters["@id"].Value;
+            });
+            return id;
+        }
+
         // ========================== { Delete } ========================== //
         public Token Delete(int id)
         {

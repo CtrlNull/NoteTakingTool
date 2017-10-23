@@ -12,4 +12,9 @@ namespace Sabio.Models.Domain
         public string service_name { get; set; }
         public string token { get; set; }
     }
+    public class TokenCreate
+    {
+        public string service_name { get; set; }
+        public string token { get; set; }
+    }
 }

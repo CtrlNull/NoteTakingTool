@@ -27,6 +27,11 @@
             , component: "adminTokenGet"
         })
         $stateProvider.state({
+            name: "tokenCreate"
+            , url: "/admin/entity/tokenCreate"
+            , component: "adminTokenCreate"
+        })
+        $stateProvider.state({
             name: "tokenGetById"
             , url: "/admin/entity/tokenGetById"
             , component: "adminTokenGetById"
@@ -41,6 +46,5 @@
             , url: "/admin/entity/tokenDelete"
             , component: "adminTokenUpdate"
         })
-            ;
-    }
+    };
 })();

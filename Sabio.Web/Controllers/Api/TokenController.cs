@@ -37,7 +37,7 @@ namespace Sabio.Web.Controllers.Api
         }
         // =================== <Create> ====================== //
         [Route, HttpPost]
-        public HttpResponseMessage Create(TokenRequest req)
+        public HttpResponseMessage Create(TokenRequestCreate req)
         {
             if (req == null)
             {
@@ -55,6 +55,11 @@ namespace Sabio.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.Created, itemResponse);
         }
         // =================== < Delete > ==================== //
+        [Route, HttpGet]
+        public Token Delete(int id)
+        {
+            return tokenService.Delete(id);
+        }
         // =================== < Update > ==================== //
     }
 }
