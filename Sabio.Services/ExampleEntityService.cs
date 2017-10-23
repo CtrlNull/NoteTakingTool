@@ -163,11 +163,11 @@ namespace Sabio.Services
                 singleRecordMapper: delegate (IDataReader reader, short set)
                 {
                     result = new ExampleEntity();
-                    result.Id = id;
-                    result.DateCreated = reader.GetDateTime(0);
-                    result.DateModified = reader.GetDateTime(1);
-                    result.Stuff = reader.GetString(2);
-                    result.Thing = reader.GetInt32(3);
+                    result.Id = reader.GetInt32(0);
+                    result.DateCreated = reader.GetDateTime(1);
+                    result.DateModified = reader.GetDateTime(2);
+                    result.Stuff = reader.GetString(3);
+                    result.Thing = reader.GetInt32(4);
                 }
             );
 

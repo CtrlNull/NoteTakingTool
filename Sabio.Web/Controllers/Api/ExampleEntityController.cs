@@ -30,6 +30,15 @@ namespace Sabio.Web.Content
             return itemsResponse;
         }
 
+        [HttpGet, Route("{id:int}")]
+        public HttpResponseMessage GetById(int id)
+        {
+            ItemResponse<ExampleEntity> itemResponse = new ItemResponse<ExampleEntity>();
+            itemResponse.Item = exampleEntityService.GetById(id);
+
+            return Request.CreateResponse(HttpStatusCode.OK, itemResponse);
+        }
+
         [Route, HttpPost]
         public HttpResponseMessage Create(ExampleEntityCreateRequest req)
         {
