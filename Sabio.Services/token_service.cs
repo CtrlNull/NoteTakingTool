@@ -22,6 +22,7 @@ namespace Sabio.Services
             // store the paramenter in the field
             this.dataProvider = dataProvider;
         }
+        // ========================== { Create } ========================== //
         public int Create(TokenRequest request)
         {
             int id = 0;
@@ -40,6 +41,7 @@ namespace Sabio.Services
             });
             return id;
         }
+        // ========================== { Get All } ========================== //
         public List<Token> GetAll()
         {
             List<Token> results = null;
@@ -61,6 +63,7 @@ namespace Sabio.Services
                });
             return results;
         }
+        // ========================== { Get By Id } ========================== //
         public Token GetById(int id)
         {
             Token result = null;
@@ -71,6 +74,46 @@ namespace Sabio.Services
                     parameters.AddWithValue("@id", id);
                 },
                 singleRecordMapper: delegate (IDataReader reader, short set)
+                {
+                    result = new Token();
+                    result.id = reader.GetInt32(0);
+                    result.service_name = reader.GetString(1);
+                    result.token = reader.GetString(2);
+                }
+            );
+            return result;
+        }
+        // ========================== { Delete } ========================== //
+        public Token Delete(int id)
+        {
+            Token result = null;
+            dataProvider.ExecuteCmd(
+                    "third_party_token_delete",
+                    inputParamMapper: delegate (SqlParameterCollection parameters)
+                    {
+                        parameters.AddWithValue("@id", id);
+                    }
+                    , singleRecordMapper: delegate (IDataReader reader, short set)
+                    {
+                        result = new Token();
+                        result.id = reader.GetInt32(0);
+                        result.service_name = reader.GetString(1);
+                        result.token = reader.GetString(2);
+                    }
+            );
+            return result;
+        }
+        // ========================== { Update } ========================== //
+        public Token Update(int id)
+        {
+            Token result = null;
+            dataProvider.ExecuteCmd(
+                "third_party_token_create",
+                inputParamMapper: delegate (SqlParameterCollection parameters)
+                {
+                    parameters.AddWithValue("@id", id);
+                }
+                , singleRecordMapper: delegate (IDataReader reader, short set)
                 {
                     result = new Token();
                     result.id = reader.GetInt32(0);

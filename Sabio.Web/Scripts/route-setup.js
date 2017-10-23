@@ -34,7 +34,13 @@
         $stateProvider.state({
             name: "tokenDelete"
             , url: "/admin/entity/tokenDelete"
-            , compnent: "adminTokenDelete"
-        });
+            , component: "adminTokenDelete"
+        })
+        $stateProvider.state({
+            name: "tokenUpdate"
+            , url: "/admin/entity/tokenDelete"
+            , component: "adminTokenUpdate"
+        })
+            ;
     }
 })();

@@ -13,9 +13,11 @@ namespace Sabio.Services.Interfaces
         // methods supported
         List<Token> GetAll();
         Token GetById(int id);
-        //List<Token> Delete();
+        Token Delete(int id);
+        Token Update(int id);
         //List<Token> Create();
         //List<Token> Update();
+
         int Create(TokenRequest request);
     }
 }
