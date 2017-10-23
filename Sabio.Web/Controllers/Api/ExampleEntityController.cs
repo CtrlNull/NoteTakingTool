@@ -9,7 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace Sabio.Web.Content
+namespace Sabio.Web.Controllers
 {
     [RoutePrefix("api/example-entity")]
     [AllowAnonymous]
@@ -23,11 +23,12 @@ namespace Sabio.Web.Content
         }
 
         [Route, HttpGet]
-        public ItemsResponse<ExampleEntity> GetAll()
+        public HttpResponseMessage GetAll()
         {
             ItemsResponse<ExampleEntity> itemsResponse = new ItemsResponse<ExampleEntity>();
             itemsResponse.Items = exampleEntityService.GetAll();
-            return itemsResponse;
+
+            return Request.CreateResponse(HttpStatusCode.OK, itemsResponse);
         }
 
         [HttpGet, Route("{id:int}")]
