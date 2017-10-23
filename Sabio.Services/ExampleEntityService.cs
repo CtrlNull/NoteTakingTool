@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Sabio.Services
 {
+    // declare a public class named ExampleEntityService that implements the IExampleEntityService interface
     public class ExampleEntityService : IExampleEntityService
     {
         // 1. create a readonly field to hold the injected thing
@@ -132,16 +133,16 @@ namespace Sabio.Services
                 con.Open();
 
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "example_entity__getbyid";
+                cmd.CommandText = "example_entity__getbyid"; // #1
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@id", id); // #2
 
                 using (IDataReader reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        result = new ExampleEntity();
+                        result = new ExampleEntity(); // #3
                         result.Id = id;
                         result.DateCreated = reader.GetDateTime(0);
                         result.DateModified = reader.GetDateTime(1);
@@ -155,14 +156,14 @@ namespace Sabio.Services
             */
 
             dataProvider.ExecuteCmd(
-                "example_entity__getbyid",
+                "example_entity__getbyid", // #1
                 inputParamMapper: delegate (SqlParameterCollection parameters)
                 {
-                    parameters.AddWithValue("@id", id);
+                    parameters.AddWithValue("@id", id); // #2
                 },
                 singleRecordMapper: delegate (IDataReader reader, short set)
                 {
-                    result = new ExampleEntity();
+                    result = new ExampleEntity(); // #3
                     result.Id = reader.GetInt32(0);
                     result.DateCreated = reader.GetDateTime(1);
                     result.DateModified = reader.GetDateTime(2);
