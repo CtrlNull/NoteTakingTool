@@ -11,5 +11,7 @@ namespace Sabio.Models.Requests
     {
         [Required]
         public int Id { get; set; }
+        public string ServiceName { get; set; }
+        public string Token { get; set; }
     }
 }

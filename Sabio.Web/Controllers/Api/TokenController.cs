@@ -65,9 +65,9 @@ namespace Sabio.Web.Controllers.Api
         }
         // =================== < Update > ==================== //
         [Route("{id:int}"), HttpPut]
-        public SuccessResponse Update(int id)
+        public SuccessResponse Update(TokenUpdateRequest req)
         {
-            tokenService.Update(id);
+            tokenService.Update(req);
             return new SuccessResponse();
         }
     }

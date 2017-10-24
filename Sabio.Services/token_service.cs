@@ -94,7 +94,7 @@ namespace Sabio.Services
                     });
         }
         // ========================== { Update } ========================== //
-        public void Update(UserGroupUpdateRequest req)
+        public void Update(TokenUpdateRequest req)
         {
             dataProvider.ExecuteNonQuery(
                 "third_party_token_delete",

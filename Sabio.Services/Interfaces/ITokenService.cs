@@ -15,6 +15,6 @@ namespace Sabio.Services.Interfaces
         Token GetById(int id);
         int Create(TokenRequestCreate request);
         void Delete(int id);
-        void Update(int id);
+        void Update(TokenUpdateRequest request);
     }
 }
