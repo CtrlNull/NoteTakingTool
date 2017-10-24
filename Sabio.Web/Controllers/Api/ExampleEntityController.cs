@@ -9,25 +9,42 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace Sabio.Web.Content
+namespace Sabio.Web.Controllers
 {
+    // Add the "RoutePrefix" attribute to the class
     [RoutePrefix("api/example-entity")]
+    // Add the "AllowAnonymous" attribute to the class
     [AllowAnonymous]
+    // declare a public class named ExampleEntityController that inherits from ApiController
     public class ExampleEntityController : ApiController
     {
+        // declare a private readonly field named exampleEntityService of type IExampleEntityService
         readonly IExampleEntityService exampleEntityService;
 
+        // declare a public constructor that takes one parameter of type IExampleEntityService
         public ExampleEntityController(IExampleEntityService exampleEntityService)
         {
+            // assign the parameter exampleEntityService to the field exampleEntityService
             this.exampleEntityService = exampleEntityService;
         }
 
+        // Add the Route and HttpGet attributes to the GetAll method
         [Route, HttpGet]
-        public ItemsResponse<ExampleEntity> GetAll()
+        // declare a public method named GetAll that takes no parameters and returns an instance of  HttpResponseMessage
+        public HttpResponseMessage GetAll()
         {
+            // 1. declare a variable named itemsResponse of type ItemsResponse<ExampleEntity>
+            // 2. create a new instance of ItemsResponse<ExampleEntity>
+            // 3. store the new instance into the variable
             ItemsResponse<ExampleEntity> itemsResponse = new ItemsResponse<ExampleEntity>();
+
+            // set the Items property of the itemsResponse variable to the result of calling
+            // the GetAll method on exampleEntityService
             itemsResponse.Items = exampleEntityService.GetAll();
-            return itemsResponse;
+
+            // Call the CreateResponse method on the Request property (inherited from the parent class)
+            // then return that response from this controller method.
+            return Request.CreateResponse(HttpStatusCode.OK, itemsResponse);
         }
 
         [HttpGet, Route("{id:int}")]
