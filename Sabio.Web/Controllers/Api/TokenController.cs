@@ -57,9 +57,18 @@ namespace Sabio.Web.Controllers.Api
         }
         // =================== < Delete > ==================== //
         [Route("{id:int}"), HttpDelete]
-        public void Delete(int id)
+        public SuccessResponse Delete(int id)
         {
+            tokenService.Delete(id);
+            return new SuccessResponse();
+
         }
         // =================== < Update > ==================== //
+        [Route("{id:int}"), HttpPut]
+        public SuccessResponse Update(int id)
+        {
+            tokenService.Update(id);
+            return new SuccessResponse();
+        }
     }
 }

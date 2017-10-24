@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sabio.Models.Requests
 {
-    public class TokenDeleteRequest
+    public class TokenUpdateRequest
     {
         [Required]
         public int Id { get; set; }

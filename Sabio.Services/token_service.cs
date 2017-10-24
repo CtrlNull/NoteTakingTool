@@ -36,8 +36,8 @@ namespace Sabio.Services
                        results = new List<Token>();
                    }
                    Token result = new Token();
-                   result.id = reader.GetInt32(0);
-                   result.service_name = reader.GetString(1);
+                   result.Id = reader.GetInt32(0);
+                   result.ServiceName = reader.GetString(1);
                    result.token = reader.GetString(2); // check! referenced as long!!!!
 
                    results.Add(result);
@@ -57,8 +57,8 @@ namespace Sabio.Services
                 singleRecordMapper: delegate (IDataReader reader, short set)
                 {
                     result = new Token();
-                    result.id = reader.GetInt32(0);
-                    result.service_name = reader.GetString(1);
+                    result.Id = reader.GetInt32(0);
+                    result.ServiceName = reader.GetString(1);
                     result.token = reader.GetString(2);
                 }
             );
@@ -83,7 +83,6 @@ namespace Sabio.Services
             });
             return id;
         }
-
         // ========================== { Delete } ========================== //
         public void Delete(int id)
         {
@@ -95,6 +94,17 @@ namespace Sabio.Services
                     });
         }
         // ========================== { Update } ========================== //
+        public void Update(UserGroupUpdateRequest req)
+        {
+            dataProvider.ExecuteNonQuery(
+                "third_party_token_delete",
+                inputParamMapper: delegate (SqlParameterCollection parameters)
+                {
+                    parameters.AddWithValue("@id", req.Id);
+                    parameters.AddWithValue("@service_name", req.ServiceName);
+                    parameters.AddWithValue("@token", req.Token);
+                });
+        }
         //public Token Update(int id)
         //{
         //    Token result = null;

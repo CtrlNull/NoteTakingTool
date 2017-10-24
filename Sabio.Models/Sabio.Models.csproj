@@ -54,6 +54,7 @@
     <Compile Include="Requests\TokenDeleteRequest.cs" />
     <Compile Include="Requests\TokenRequest.cs" />
     <Compile Include="Requests\TokenRequestCreate.cs" />
+    <Compile Include="Requests\TokenUpdateRequest.cs" />
     <Compile Include="Responses\BaseResponse.cs" />
     <Compile Include="Responses\ErrorResponse.cs" />
     <Compile Include="Responses\ItemResponse.cs" />
