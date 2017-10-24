@@ -1,13 +1,13 @@
 ﻿(function () {
-    angular.module(APPNAME)
+    angular.module(TokenData)
         .component('tokenMainApp', {
         templateUrl: '/Scripts/components/token/main.html'
         , controller: 'tokenEditController'
         });
-    angular.module(APPNAME)
-        .component('tokenEditController', tokenEditController);
+    angular.module(TokenData)
+        .component('tokenEditController', TokenController);
 
-    function tokenEditController() {
+    function TokenController() {
 
     };
 

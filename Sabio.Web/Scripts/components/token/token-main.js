@@ -1,4 +1,4 @@
 ﻿(function () {
-    window.APPNAME = 'C44';
-    angular.module(APPNAME, []);
+    window.TokenData = 'C44';
+    angular.module(TokenData, []);
 })();
