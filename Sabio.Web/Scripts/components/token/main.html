@@ -1,6 +1,6 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +9,13 @@
     <link href="../../../Content/bootstrap.css" rel="stylesheet" />
     <link href="../../../Content/Site.css" rel="stylesheet" />
     <script src="../../modernizr-2.8.3.js"></script>
+    <link href="token.css" rel="stylesheet" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <!-- ======================================================= -->
 </head>
-<body>
+
+<body ng-app="TokenData">
+    <!-- Nav bar -->
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -20,7 +24,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">Application name</a>
+                <a class="navbar-brand" href="/">Lets Control Tokens</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -31,32 +35,62 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        <div class="jumbotron">
-            <h1>ASP.NET</h1>
-            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-            <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <!-- Jumbotron -->
+    <div class="container body-content" ng-controller="TokenController as t">
+        <div class="jumbotron clearfix">
+            <!-- Left Side -->
+            <div class="column menu">
+                <!-- Data control buttons -->
+                <div class="buttons inputsMove">
+                    <button class="btn btn-primary" type="button" ng-click="t.getAll">GetAll</button>
+                    <button class="btn btn-warning" type="button" ng-click="t.update">Update</button>
+                    <button class="btn btn-danger" type="button" ng-click="t.delete">Delete</button>
+                </div>
+                <div class="inputsMove">
+                    <label>User Id</label>
+                </div>
+                <div class="inputsMove">
+                    <input type="text" id="userIdInput" ng-model="t.id" placeholder="{{t.id}}" />
+                </div>
+                <!-- Sign in Buttons -->
+                <div class="serviceButtons inputsMove">
+                    <button class="btn signInButton" type="button" ng-click="t.getAll"><a src="/pics/google.png"><img width="30px" height="30px" src="pics/google.png"></a> Google</button>
+                    <button class="btn signInButton" type="button" ng-click="t.update"><img width="30px" height="30px" src="pics/slack.png"> Slack</button>
+                    <button class="btn signInButton" type="button" ng-click="t.delete"><img width="30px" height="30px" src="pics/github.png"> GitHub</button>
+                </div>
+                <div class="inputsMove">
+                    <input type="text" id="userServiceInput" ng-model="t.serviceName" placeholder="{{t.serviceName}}" />
+                </div>
+                <div class="inputsMove">
+                    <label>Token</label>
+                </div>
+                <div class="inputsMove">
+                    <input type="text" id="userTokenInput" ng-model="t.token" placeholder="{{t.token}}" />
+                </div>
+            </div>
+            <!-- Right side -->
+            <div class="column content">
+                <!-- list url -->
+                <p>Example URL:<span></span></p>
+                <pre>{{c|json}}</pre>
+            </div>
         </div>
-
-        <div class="row">
+        <!-- Lower Container -->
+        <div class="row listedItems" ng-controller="listController as l">
             <div class="col-md-4">
-                <h2>Getting started</h2>
-                <p>
-                    ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                    enables a clean separation of concerns and gives you full control over markup
-                    for enjoyable, agile development.
-                </p>
-                <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+                <h3 class="h3Text">ID: <span ng-model="l.listId"></span></h3>
             </div>
             <div class="col-md-4">
-                <h2>Get more libraries</h2>
-                <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-                <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+                <h3 class="h3Text">Service Name: <span ng-model="l.listServiceName"></span></h3>
             </div>
             <div class="col-md-4">
-                <h2>Web Hosting</h2>
-                <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-                <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+                <h3 class="h3Text">Token: <span ng-model="l.listToken"></span></h3>
+            </div>
+            <div class="col-md-4">
+                <h3 class="h3Text">Date Created: </h3>
+            </div>
+            <div class="col-md-4">
+                <h3 class="h3Text">Date Modified: </h3>
             </div>
         </div>
         <hr />
@@ -66,7 +100,6 @@
     <script src="../../bootstrap.js"></script>
     <script src="../../respond.js"></script>
     <!-- =============================================== -->
-
-
 </body>
+
 </html>

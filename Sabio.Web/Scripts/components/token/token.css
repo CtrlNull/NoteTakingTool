@@ -1,0 +1,35 @@
+.column {
+    float: left;
+    padding: 15px;
+}
+.menu {
+    width: 50%;
+}
+.content {
+    width: 50%;
+}
+.inputsMove {
+    margin-bottom: 5px;
+}
+pre {
+    width: 90%;
+    height: 100%;
+    border: 1px solid red;
+}
+.urlMargin {
+    margin-left: 5%;
+}
+.listedItems {
+    border: 1px solid black;
+}
+.h3Text {
+    font-size: 16px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+.btn-block {
+    width: 60px;
+}
+.signInButton {
+    padding: 1px 2px 1px 1px;   
+}
