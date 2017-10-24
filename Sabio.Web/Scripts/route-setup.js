@@ -20,31 +20,31 @@
             name: 'edit-exampleentity',
             url: '/admin/entity/example',
             component: 'adminEditExample'
-        })
+        });
         $stateProvider.state({
             name: "token"
             , url: "/admin/entity/tokengetall"
             , component: "adminTokenGet"
-        })
+        });
         $stateProvider.state({
             name: "tokenCreate"
             , url: "/admin/entity/tokenCreate"
             , component: "adminTokenCreate"
-        })
+        });
         $stateProvider.state({
             name: "tokenGetById"
             , url: "/admin/entity/tokenGetById"
             , component: "adminTokenGetById"
-        })
+        });
         $stateProvider.state({
             name: "tokenDelete"
             , url: "/admin/entity/tokenDelete"
             , component: "adminTokenDelete"
-        })
+        });
         $stateProvider.state({
             name: "tokenUpdate"
-            , url: "/admin/entity/tokenDelete"
+            , url: "/admin/entity/tokenUpdate"
             , component: "adminTokenUpdate"
-        })
+        });
     };
 })();

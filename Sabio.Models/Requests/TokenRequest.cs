@@ -10,10 +10,13 @@ namespace Sabio.Models.Requests
     public class TokenRequest
     {
         [Required]
+        public int Id { get; set; }
+        [Required]
         [MinLength(1), MaxLength(50)]
-        public int id { get; set; }
-        public string service_name { get; set; }
-        public string token { get; set; }
+        public string ServiceName { get; set; }
+        [Required]
+        [MinLength(1), MaxLength(50)]
+        public string Token { get; set; }
     }
     //public class TokenRequestCreate
     //{

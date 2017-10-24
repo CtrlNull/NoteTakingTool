@@ -12,7 +12,6 @@ namespace Sabio.Models.Requests
         [Required]
         [MinLength(1), MaxLength(50)]
         public string Stuff { get; set; }
-
         public int Thing { get; set; }
     }
 }

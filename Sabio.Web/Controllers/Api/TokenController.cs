@@ -1,6 +1,7 @@
 ﻿using Sabio.Models.Domain;
 using Sabio.Models.Requests;
 using Sabio.Models.Responses;
+using Sabio.Services;
 using Sabio.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -55,10 +56,9 @@ namespace Sabio.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.Created, itemResponse);
         }
         // =================== < Delete > ==================== //
-        [Route, HttpGet]
-        public Token Delete(int id)
+        [Route("{id:int}"), HttpDelete]
+        public void Delete(int id)
         {
-            return tokenService.Delete(id);
         }
         // =================== < Update > ==================== //
     }
