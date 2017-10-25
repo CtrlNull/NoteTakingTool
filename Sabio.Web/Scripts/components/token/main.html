@@ -1,40 +1,4 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page - Sabio</title>
-    <!-- ==================== <Styling> ======================== -->
-    <link href="../../../Content/bootstrap.css" rel="stylesheet" />
-    <link href="../../../Content/Site.css" rel="stylesheet" />
-    <script src="../../modernizr-2.8.3.js"></script>
-    <link href="token.css" rel="stylesheet" />
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    <!-- ======================================================= -->
-</head>
-<body ng-app="TokenData">
-    <!-- Nav bar -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Lets Control Tokens</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/Home/About">About</a></li>
-                    <li><a href="/Home/Contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- Jumbotron -->
-    <div class="container body-content" ng-controller="adminTokenController as vm">
+﻿    <div class="container body-content" ng-controller="adminTokenController as vm">
         <div class="jumbotron clearfix">
             <!-- Left Side -->
             <div class="column menu">
@@ -52,9 +16,9 @@
                 </div>
                 <!-- Sign in Buttons -->
                 <div class="serviceButtons inputsMove">
-                    <button class="btn signInButton" type="button" ng-click="vm.clickyGoogle"><img width="30px" height="30px" src="tokenPics/google.png">Google</button>
-                    <button class="btn signInButton" type="button" ng-click="vm.clickySlack"><img width="30px" height="30px" src="tokenPics/slack.png"> Slack</button>
-                    <button class="btn signInButton" type="button" ng-click="vm.clickyGithub"><img width="30px" height="30px" src="tokenPics/github.png"> GitHub</button>
+                    <button class="btn signInButton" type="button" ng-click="vm.clickyGoogle"><img width="30px" height="30px" src="../Scripts/components/token/tokenPics/google.png">Google</button>
+                    <button class="btn signInButton" type="button" ng-click="vm.clickySlack"><img width="30px" height="30px" src="../Scripts/components/token/tokenPics/slack.png"> Slack</button>
+                    <button class="btn signInButton" type="button" ng-click="vm.clickyGithub"><img width="30px" height="30px" src="../Scripts/components/token/tokenPics/github.png"> GitHub</button>
                 </div>
                 <div class="inputsMove">
                     <input type="text" id="userServiceInput" ng-model="vm.serviceName" placeholder="{{vm.serviceName}}" />
@@ -70,7 +34,7 @@
             <div class="column content">
                 <!-- list url -->
                 <p>Example URL:<span></span></p>
-                <pre>{{$ctrl|vm}}</pre>
+                <pre>{{$ctrl|.id}}</pre>
             </div>
         </div>
         <!-- Lower Container -->
@@ -91,13 +55,4 @@
                 <h3 class="h3Text">Date Modified: </h3>
             </div>
         </div>
-        <hr />
     </div>
-    <!-- ================= < Scripts > ================= -->
-    <script src="../../jquery-3.1.1.js"></script>
-    <script src="../../bootstrap.js"></script>
-    <script src="../../respond.js"></script>
-    <!-- =============================================== -->
-</body>
-
-</html>

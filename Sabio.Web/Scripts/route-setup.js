@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module(TokenData)
+    angular.module(APPNAME)
         .config(configRoutes);
 
     configRoutes.$inject = ['$stateProvider'];
@@ -18,45 +18,44 @@
         */
         // ---- <Example> ---- //
         $stateProvider.state({
-            name: 'edit-Token',
-            url: '/admin/entity/Token/{id:int}',
+            name: 'edit-token',
+            url: '/admin/entity/token/{id:int}',
             component: 'adminEditToken'
-        });
-
+        })
         $stateProvider.state({
-            name: 'create-exampleentity',
+            name: 'create-token',
             url: '/admin/entity/token/new',
             component: 'adminEditToken'
-        });
+        })
         // ---- <Get All> ---- //
         $stateProvider.state({
-            name: "token"
+            name: 'getAll-token'
             , url: "/admin/entity/token"
-            , component: "adminTokenGet"
-        });
-        // ---- <Create> ---- //
-        $stateProvider.state({
-            name: "tokenCreate"
-            , url: "/admin/entity/token"
-            , component: "adminTokenCreate"
-        });
-        // ---- <GetById> ---- //
-        $stateProvider.state({
-            name: "tokenGetById"
-            , url: "/admin/entity/token/{id}"
-            , component: "adminTokenGetById"
-        });
-        // ---- <Delete> ---- //
-        $stateProvider.state({
-            name: "tokenDelete"
-            , url: "/admin/entity/token/{id}"
-            , component: "adminTokenDelete"
-        });
-        // ---- <Update> ---- //
-        $stateProvider.state({
-            name: "tokenUpdate"
-            , url: "/admin/entity/token/{id}"
-            , component: "adminTokenUpdate"
-        });
+            , component: "adminTokenController"
+        })
+        //// ---- <Create> ---- //
+        //$stateProvider.state({
+        //    name: "tokenCreate"
+        //    , url: "/admin/entity/token"
+        //    , component: "adminTokenCreate"
+        //});
+        //// ---- <GetById> ---- //
+        //$stateProvider.state({
+        //    name: "tokenGetById"
+        //    , url: "/admin/entity/token/{id}"
+        //    , component: "adminTokenGetById"
+        //});
+        //// ---- <Delete> ---- //
+        //$stateProvider.state({
+        //    name: "tokenDelete"
+        //    , url: "/admin/entity/token/{id}"
+        //    , component: "adminTokenDelete"
+        //});
+        //// ---- <Update> ---- //
+        //$stateProvider.state({
+        //    name: "tokenUpdate"
+        //    , url: "/admin/entity/token/{id}"
+        //    , component: "adminTokenUpdate"
+        //});
     };
 })();

@@ -1,5 +1,5 @@
 ﻿(function () {
-    angular.module(TokenData)
+    angular.module(APPNAME)
         .service('tokenService', tokenService);
    
     tokenService.$inject = ['$http'];
@@ -15,32 +15,32 @@
         function _getAll() {
             return $http({
                 method: "GET"
-                , url: "api/third_party_token"
+                , url: "api/token"
             });
         }
         function _getById() {
             return $http({
                 method: "GET"
-                ,url: "api/third_party_token_getbyid"
+                ,url: "api/token/{id:int}"
             })
-        }
-        function _Delete() {
-            return $http({
-                method: "DELETE"
-                , url: "api/third_party_token_delete"
-            })
-        }
-        function _Create() {
-            return $http({
-                method: "POST"
-                , url: "api/third_party_token_create"
-            })
-        }
-        function _Update() {
-            return $http({
-                method: "PUT"
-                , url: "api/third_party_token_update"
-            })
+        //}
+        //function _Delete() {
+        //    return $http({
+        //        method: "DELETE"
+        //        , url: "api/token{"
+        //    })
+        //}
+        //function _Create() {
+        //    return $http({
+        //        method: "POST"
+        //        , url: "api/token"
+        //    })
+        //}
+        //function _Update() {
+        //    return $http({
+        //        method: "PUT"
+        //        , url: "api/token"
+        //    })
         }
     }
 })();
