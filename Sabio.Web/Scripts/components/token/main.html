@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +12,6 @@
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <!-- ======================================================= -->
 </head>
-
 <body ng-app="TokenData">
     <!-- Nav bar -->
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -36,55 +34,55 @@
         </div>
     </div>
     <!-- Jumbotron -->
-    <div class="container body-content" ng-controller="TokenController as t">
+    <div class="container body-content" ng-controller="adminTokenController as vm">
         <div class="jumbotron clearfix">
             <!-- Left Side -->
             <div class="column menu">
                 <!-- Data control buttons -->
                 <div class="buttons inputsMove">
-                    <button class="btn btn-primary" type="button" ng-click="t.getAll">GetAll</button>
-                    <button class="btn btn-warning" type="button" ng-click="t.update">Update</button>
-                    <button class="btn btn-danger" type="button" ng-click="t.delete">Delete</button>
+                    <button class="btn btn-primary" type="button" ng-click="vm.clickyGetAll">GetAll</button>
+                    <button class="btn btn-warning" type="button" ng-click="vm.clickyUpdate">Update</button>
+                    <button class="btn btn-danger" type="button" ng-click="vm.clickyDelete">Delete</button>
                 </div>
                 <div class="inputsMove">
                     <label>User Id</label>
                 </div>
                 <div class="inputsMove">
-                    <input type="text" id="userIdInput" ng-model="t.id" placeholder="{{t.id}}" />
+                    <input type="text" id="userIdInput" ng-model="vm.id" placeholder="{{vm.id}}" />
                 </div>
                 <!-- Sign in Buttons -->
                 <div class="serviceButtons inputsMove">
-                    <button class="btn signInButton" type="button" ng-click="t.getAll"><img width="30px" height="30px" src="tokenPics/google.png">Google</button>
-                    <button class="btn signInButton" type="button" ng-click="t.update"><img width="30px" height="30px" src="tokenPics/slack.png"> Slack</button>
-                    <button class="btn signInButton" type="button" ng-click="t.delete"><img width="30px" height="30px" src="tokenPics/github.png"> GitHub</button>
+                    <button class="btn signInButton" type="button" ng-click="vm.clickyGoogle"><img width="30px" height="30px" src="tokenPics/google.png">Google</button>
+                    <button class="btn signInButton" type="button" ng-click="vm.clickySlack"><img width="30px" height="30px" src="tokenPics/slack.png"> Slack</button>
+                    <button class="btn signInButton" type="button" ng-click="vm.clickyGithub"><img width="30px" height="30px" src="tokenPics/github.png"> GitHub</button>
                 </div>
                 <div class="inputsMove">
-                    <input type="text" id="userServiceInput" ng-model="t.serviceName" placeholder="{{t.serviceName}}" />
+                    <input type="text" id="userServiceInput" ng-model="vm.serviceName" placeholder="{{vm.serviceName}}" />
                 </div>
                 <div class="inputsMove">
                     <label>Token</label>
                 </div>
                 <div class="inputsMove">
-                    <input type="text" id="userTokenInput" ng-model="t.token" placeholder="{{t.token}}" />
+                    <input type="text" id="userTokenInput" ng-model="vm.token" placeholder="{{vm.token}}" />
                 </div>
             </div>
             <!-- Right side -->
             <div class="column content">
                 <!-- list url -->
                 <p>Example URL:<span></span></p>
-                <pre>{{c|json}}</pre>
+                <pre>{{$ctrl|vm}}</pre>
             </div>
         </div>
         <!-- Lower Container -->
-        <div class="row listedItems" ng-controller="listController as l">
+        <div class="row listedItems">
             <div class="col-md-4">
-                <h3 class="h3Text">ID: <span ng-model="l.listId"></span></h3>
+                <h3 class="h3Text">ID: <span ng-model="vm.listId"></span></h3>
             </div>
             <div class="col-md-4">
-                <h3 class="h3Text">Service Name: <span ng-model="l.listServiceName"></span></h3>
+                <h3 class="h3Text">Service Name: <span ng-model="vm.listServiceName"></span></h3>
             </div>
             <div class="col-md-4">
-                <h3 class="h3Text">Token: <span ng-model="l.listToken"></span></h3>
+                <h3 class="h3Text">Token: <span ng-model="vm.listToken"></span></h3>
             </div>
             <div class="col-md-4">
                 <h3 class="h3Text">Date Created: </h3>

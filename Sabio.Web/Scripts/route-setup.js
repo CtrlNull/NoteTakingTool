@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module(APPNAME)
+    angular.module(TokenData)
         .config(configRoutes);
 
     configRoutes.$inject = ['$stateProvider'];
@@ -31,31 +31,31 @@
         // ---- <Get All> ---- //
         $stateProvider.state({
             name: "token"
-            , url: "/admin/entity/tokengetall"
+            , url: "/admin/entity/token"
             , component: "adminTokenGet"
         });
         // ---- <Create> ---- //
         $stateProvider.state({
             name: "tokenCreate"
-            , url: "/admin/entity/tokenCreate"
+            , url: "/admin/entity/token"
             , component: "adminTokenCreate"
         });
         // ---- <GetById> ---- //
         $stateProvider.state({
             name: "tokenGetById"
-            , url: "/admin/entity/tokenGetById"
+            , url: "/admin/entity/token/{id}"
             , component: "adminTokenGetById"
         });
         // ---- <Delete> ---- //
         $stateProvider.state({
             name: "tokenDelete"
-            , url: "/admin/entity/tokenDelete"
+            , url: "/admin/entity/token/{id}"
             , component: "adminTokenDelete"
         });
         // ---- <Update> ---- //
         $stateProvider.state({
             name: "tokenUpdate"
-            , url: "/admin/entity/tokenUpdate"
+            , url: "/admin/entity/token/{id}"
             , component: "adminTokenUpdate"
         });
     };

@@ -1,5 +1,5 @@
 ﻿(function () {
-    angular.module(APPNAME)
+    angular.module(TokenData)
         .service('tokenService', tokenService);
    
     tokenService.$inject = ['$http'];

@@ -228,7 +228,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Content Include="Content\admin-index.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css" />
@@ -256,7 +255,7 @@
     <Content Include="Scripts\components\admin-edit-example\main.html" />
     <Content Include="Scripts\components\admin-edit-example\main.js" />
     <Content Include="Scripts\components\token\main.html" />
-    <Content Include="Scripts\components\token\main.js" />
+    <Content Include="Scripts\components\token\tokenController.js" />
     <Content Include="Scripts\components\token\token-main.js" />
     <Content Include="Scripts\components\token\token.css" />
     <Content Include="Scripts\components\token\tokenPics\github.png" />

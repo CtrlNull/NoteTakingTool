@@ -1,4 +1,4 @@
 ﻿(function () {
     window.TokenData = 'C44';
-    angular.module(TokenData, []);
+    angular.module(TokenData, ['ui.router']);
 })();
