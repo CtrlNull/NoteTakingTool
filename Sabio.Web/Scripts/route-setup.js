@@ -18,15 +18,15 @@
         */
         // ---- <Example> ---- //
         $stateProvider.state({
-            name: 'edit-exampleentity',
-            url: '/admin/entity/example/{id:int}',
-            component: 'adminEditExample'
+            name: 'edit-Token',
+            url: '/admin/entity/Token/{id:int}',
+            component: 'adminEditToken'
         });
 
         $stateProvider.state({
             name: 'create-exampleentity',
-            url: '/admin/entity/example/new',
-            component: 'adminEditExample'
+            url: '/admin/entity/token/new',
+            component: 'adminEditToken'
         });
         // ---- <Get All> ---- //
         $stateProvider.state({

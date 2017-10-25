@@ -19,8 +19,6 @@
         function _clickyGetAll(data) {
             console.log("get all fire");
         }
-
-
         if ($stateParams.id) {
             vm.mode = 'edit';
         }
@@ -28,12 +26,5 @@
             vm.mode = 'create';
         }
         vm.id = $stateParams.id;
-
-
-
-
-
     };
-
-
 })();
