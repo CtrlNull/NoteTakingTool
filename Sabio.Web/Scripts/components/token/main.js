@@ -1,15 +1,16 @@
 ﻿(function () {
+    'use strict'
     angular.module(APPNAME)
         .component('adminTokenController', {
         templateUrl: '/Scripts/components/token/main.html'
-        , controller: 'adminTokenController'
+        , controller: 'adminTokenControllerLocal'
         });
     angular.module(APPNAME)
-        .component('adminTokenController', adminTokenController);
+        .controller('adminTokenControllerLocal', adminTokenControllerLocal);
 
-    adminTokenController.$inject = ['$stateParams'];
+    adminTokenControllerLocal.$inject = ['$stateParams'];
 
-    function adminTokenController($stateParams) {
+    function adminTokenControllerLocal($stateParams) {
         var vm = this;
         vm.clickyGetAll = _clickyGetAll; // grabs getall button
         vm.clickyDelete = _clickyDelete; // grabs delete button

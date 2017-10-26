@@ -1,52 +1,52 @@
-﻿    <div class="container body-content" ng-controller="adminTokenController as vm">
+﻿    <div class="container body-content">
         <div class="jumbotron clearfix">
             <!-- Left Side -->
             <div class="column menu">
                 <!-- Data control buttons -->
                 <div class="buttons inputsMove">
-                    <button class="btn btn-primary" type="button" ng-click="vm.clickyGetAll">GetAll</button>
-                    <button class="btn btn-warning" type="button" ng-click="vm.clickyUpdate">Update</button>
-                    <button class="btn btn-danger" type="button" ng-click="vm.clickyDelete">Delete</button>
+                    <button class="btn btn-primary" type="button" ng-click="$ctrl.clickyGetAll()">GetAll</button>
+                    <button class="btn btn-warning" type="button" ng-click="$ctrl.clickyUpdate()">Update</button>
+                    <button class="btn btn-danger" type="button" ng-click="$ctrl.clickyDelete()">Delete</button>
                 </div>
                 <div class="inputsMove">
                     <label>User Id</label>
                 </div>
                 <div class="inputsMove">
-                    <input type="text" id="userIdInput" ng-model="vm.id" placeholder="{{vm.id}}" />
+                    <input type="text" id="userIdInput" ng-model="$ctrl.id" placeholder="{{$ctrl.id}}" />
                 </div>
                 <!-- Sign in Buttons -->
                 <div class="serviceButtons inputsMove">
-                    <button class="btn signInButton" type="button" ng-click="vm.clickyGoogle"><img width="30px" height="30px" src="../Scripts/components/token/tokenPics/google.png">Google</button>
-                    <button class="btn signInButton" type="button" ng-click="vm.clickySlack"><img width="30px" height="30px" src="../Scripts/components/token/tokenPics/slack.png"> Slack</button>
-                    <button class="btn signInButton" type="button" ng-click="vm.clickyGithub"><img width="30px" height="30px" src="../Scripts/components/token/tokenPics/github.png"> GitHub</button>
+                    <button class="btn signInButton" type="button" ng-click="$ctrl.clickyGoogle()"><img width="30px" height="30px" src="../Scripts/components/token/tokenPics/google.png">Google</button>
+                    <button class="btn signInButton" type="button" ng-click="$ctrl.clickySlack()"><img width="30px" height="30px" src="../Scripts/components/token/tokenPics/slack.png"> Slack</button>
+                    <button class="btn signInButton" type="button" ng-click="$ctrl.clickyGithub()"><img width="30px" height="30px" src="../Scripts/components/token/tokenPics/github.png"> GitHub</button>
                 </div>
                 <div class="inputsMove">
-                    <input type="text" id="userServiceInput" ng-model="vm.serviceName" placeholder="{{vm.serviceName}}" />
+                    <input type="text" id="userServiceInput" ng-model="$ctrl.serviceName" placeholder="{{$ctrl.serviceName}}" />
                 </div>
                 <div class="inputsMove">
                     <label>Token</label>
                 </div>
                 <div class="inputsMove">
-                    <input type="text" id="userTokenInput" ng-model="vm.token" placeholder="{{vm.token}}" />
+                    <input type="text" id="userTokenInput" ng-model="$ctrl.token" placeholder="{{$ctrl.token}}" />
                 </div>
             </div>
             <!-- Right side -->
             <div class="column content">
                 <!-- list url -->
                 <p>Example URL:<span></span></p>
-                <pre>{{$ctrl|.id}}</pre>
+                <pre>{{$ctrl.id}}</pre>
             </div>
         </div>
         <!-- Lower Container -->
-        <div class="row listedItems">
+        <div class="row listedItems ng-repeat:"tokens">
             <div class="col-md-4">
-                <h3 class="h3Text">ID: <span ng-model="vm.listId"></span></h3>
+                <h3 class="h3Text">ID: <span ng-model="$ctrl.listId"></span></h3>
             </div>
             <div class="col-md-4">
-                <h3 class="h3Text">Service Name: <span ng-model="vm.listServiceName"></span></h3>
+                <h3 class="h3Text">Service Name: <span ng-model="$ctrl.listServiceName"></span></h3>
             </div>
             <div class="col-md-4">
-                <h3 class="h3Text">Token: <span ng-model="vm.listToken"></span></h3>
+                <h3 class="h3Text">Token: <span ng-model="$ctrl.listToken"></span></h3>
             </div>
             <div class="col-md-4">
                 <h3 class="h3Text">Date Created: </h3>
