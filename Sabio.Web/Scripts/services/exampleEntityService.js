@@ -11,7 +11,7 @@
 
         svc.getAll = _getAll;
 
-        function _getAll() {
+        function _getAll(data) {
             return $http({
                 method: 'GET',
                 url: '/api/example-entity'

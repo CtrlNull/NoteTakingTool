@@ -8,17 +8,24 @@
     angular.module(APPNAME)
         .controller('adminTokenControllerLocal', adminTokenControllerLocal);
 
-    adminTokenControllerLocal.$inject = ['$stateParams'];
+    adminTokenControllerLocal.$inject = ['$stateParams', 'tokenService'];
 
-    function adminTokenControllerLocal($stateParams) {
+    function adminTokenControllerLocal($stateParams, tokenService) {
         var vm = this;
+        vm.tokenService = tokenService
+        vm.item = null
+        vm.items = [];
+        // Buttons
         vm.clickyGetAll = _clickyGetAll; // grabs getall button
         vm.clickyDelete = _clickyDelete; // grabs delete button
         vm.clickyUpdate = _clickyUpdate; // grabs update button
 
+        //--|Get All<Button>|--//
         function _clickyGetAll() {
-            console.log("get all fire");
+            tokenService.getAll(vm.item)
+                .then(_success, _error);
         }
+        //----------------------
         if ($stateParams.id) {
             vm.mode = 'edit';
         }
@@ -26,5 +33,18 @@
             vm.mode = 'create';
         }
         vm.id = $stateParams.id;
+        //----------------------
+        // ==== Success/Error ====//
+        //--|OnSuccess|--//
+        function _success(data) {
+            if (data && data.item) {
+                vm.item.id == data.item;
+                vm.items.push(vm.item);
+            }
+        }
+        function _error() {
+            console.log("Error");
+        }
+
     };
 })();

@@ -20,15 +20,26 @@ pre {
     margin-left: 5%;
 }
 .listedItems {
-    border: 1px solid red;
+    border: 1px solid black;
+
 }
 .h3Text {
     font-size: 16px;
+    width: 70%;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: red;
+    margin-bottom: .5px;
 
 }
-.btn-block {
+.h3Text:after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    left: 25%;
+    bottom: -20px;
+    border-bottom: 1px solid #666;
+}
+    .btn-block {
     width: 60px;
 }
 .signInButton {
