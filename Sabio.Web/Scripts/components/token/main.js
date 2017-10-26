@@ -22,6 +22,7 @@
 
         //--|Get All<Button>|--//
         function _clickyGetAll() {
+            console.log("GetAll Button");
             tokenService.getAll(vm.item)
                 .then(_success, _error);
         }
@@ -29,24 +30,29 @@
             console.log("Delete Button");
         }
         function _clickyUpdate() {
-            console.log("Update Button");
+            console.log("Update Button")
         }
         //----------------------
         //if ($stateParams.id) {
         //    vm.mode = 'edit';
         //}
         //else {
-        //    vm.mode = 'create';
+        //    //vm.mode = 'create';
         //}
         //vm.id = $stateParams.id;
         //----------------------
+
         // ==== Success/Error ====//
         //--|OnSuccess|--//
-        function _success(data) {
-            if (data && data.item) {
-                vm.item.id == data.item;
-                vm.items.push(vm.item);
-            }
+        function _success(response) {
+            vm.items = response.data.items;
+
+            //if (data && data.item) {
+            //    vm.item.id == data.item;
+            //    vm.items.push(vm.item);
+            //    console.log("data worked");
+            //    console.log(data);
+            //}
         }
         function _error() {
             console.log("Error");

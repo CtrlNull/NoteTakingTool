@@ -12,7 +12,7 @@
                     <label>User Id</label>
                 </div>
                 <div class="inputsMove">
-                    <input type="text" id="userIdInput" ng-model="$ctrl.id" placeholder="{{$ctrl.id}}" />
+                    <input type="text" id="userIdInput" ng-model="item.id" placeholder="{{item.id}}" />
                 </div>
                 <!-- Sign in Buttons -->
                 <div class="serviceButtons inputsMove">
@@ -21,7 +21,7 @@
                     <button class="btn signInButton" type="button" ng-click="$ctrl.clickyGithub()"><img width="30px" height="30px" src="../Scripts/components/token/tokenPics/github.png"> GitHub</button>
                 </div>
                 <div class="inputsMove">
-                    <input type="text" id="userServiceInput" ng-model="$ctrl.serviceName" placeholder="{{$ctrl.serviceName}}" />
+                    <input type="text" id="userServiceInput" ng-model="$ctrl.serviceName" placeholder="{{$ctrl.id}}" />
                 </div>
                 <div class="inputsMove">
                     <label>Token</label>
