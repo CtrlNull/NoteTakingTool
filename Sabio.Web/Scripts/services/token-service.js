@@ -1,32 +1,34 @@
 ﻿(function () {
+    'use strict'
     angular.module(APPNAME)
         .service('tokenService', tokenService);
    
-    tokenService.$inject = ['$http', '$q'];
+    tokenService.$inject = ['$http'];
     
-    function tokenService($http, $q) {
+    function tokenService($http) {
         var svc = this;
         // Hoist //
         svc.getAll = _getAll;
-        svc.getById = _getByid;
-        svc.Delete = _Delete;
-        svc.Create = _Create;
-        svc.Update = _Update;
+        svc.getById = _getById;
+        svc.delete = _delete;
+        svc.create = _create;
+        svc.update = _update;
 
         // ------- { Settings } ------- //
         //==| Get All |==//
         function _getAll() {
             return $http({
                 method: "GET"
-                , url: "api/token"
+                , url: "/api/token/"
             });
         }
         //==| Get by id |==///
         function _getById() {
             return $http({
                 method: "GET"
-                ,url: "api/token/{id:int}"
+                , url: "api/token/{id:int}"
             })
+        }
         //==| Delete |==//
         function _delete() {
             return $http({

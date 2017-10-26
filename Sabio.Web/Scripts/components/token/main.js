@@ -8,9 +8,9 @@
     angular.module(APPNAME)
         .controller('adminTokenControllerLocal', adminTokenControllerLocal);
 
-    adminTokenControllerLocal.$inject = ['$stateParams', 'tokenService'];
+    adminTokenControllerLocal.$inject = ['tokenService'];
 
-    function adminTokenControllerLocal($stateParams, tokenService) {
+    function adminTokenControllerLocal(tokenService) {
         var vm = this;
         vm.tokenService = tokenService
         vm.item = null
@@ -25,14 +25,20 @@
             tokenService.getAll(vm.item)
                 .then(_success, _error);
         }
+        function _clickyDelete() {
+            console.log("Delete Button");
+        }
+        function _clickyUpdate() {
+            console.log("Update Button");
+        }
         //----------------------
-        if ($stateParams.id) {
-            vm.mode = 'edit';
-        }
-        else {
-            vm.mode = 'create';
-        }
-        vm.id = $stateParams.id;
+        //if ($stateParams.id) {
+        //    vm.mode = 'edit';
+        //}
+        //else {
+        //    vm.mode = 'create';
+        //}
+        //vm.id = $stateParams.id;
         //----------------------
         // ==== Success/Error ====//
         //--|OnSuccess|--//
