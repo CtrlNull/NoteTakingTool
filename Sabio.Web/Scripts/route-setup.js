@@ -28,5 +28,30 @@
             url: '/admin/entity/example/new',
             component: 'adminEditExample'
         });
+
+        /*
+        URLS for cars:
+        /admin/entity/cars   (views the table of all cars)
+        /admin/entity/cars/123   (edit a specific car that already exists)
+        /admin/entity/cars/new   (create a new car)
+        */
+
+        $stateProvider.state({
+            name: 'view-cars',
+            url: '/admin/entity/cars',
+            component: 'adminViewCars'
+        });
+
+        $stateProvider.state({
+            name: 'edit-cars',
+            url: '/admin/entity/cars/{id:int}',
+            component: 'adminEditCar'
+        });
+
+        $stateProvider.state({
+            name: 'create-cars',
+            url: '/admin/entity/cars/new',
+            component: 'adminEditCar'
+        });
     }
 })();
