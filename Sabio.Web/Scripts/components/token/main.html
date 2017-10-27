@@ -12,16 +12,14 @@
                     <label>User Id</label>
                 </div>
                 <div class="inputsMove">
-                    <input type="text" id="userIdInput" ng-model="$ctrl.items.id" placeholder="{{$ctrl.items.id}}" />
+                    <input type="text" id="userIdInput" ng-model="$ctrl.updateId" placeholder="{{$ctrl.updateId}}" />
                 </div>
                 <!-- Sign in Buttons -->
-                <div class="serviceButtons inputsMove">
-                    <button class="btn signInButton" type="button" ng-click="$ctrl.clickyGoogle()"><img width="30px" height="30px" src="../Scripts/components/token/tokenPics/google.png">Google</button>
-                    <button class="btn signInButton" type="button" ng-click="$ctrl.clickySlack()"><img width="30px" height="30px" src="../Scripts/components/token/tokenPics/slack.png"> Slack</button>
-                    <button class="btn signInButton" type="button" ng-click="$ctrl.clickyGithub()"><img width="30px" height="30px" src="../Scripts/components/token/tokenPics/github.png"> GitHub</button>
+                <div class="inputsMove">
+                    <label>Service Name</label>
                 </div>
                 <div class="inputsMove">
-                    <input type="text" id="userServiceInput" ng-model="$ctrl.serviceName" placeholder="{{$ctrl.id}}" />
+                    <input type="text" id="userServiceInput" ng-model="$ctrl.serviceName" placeholder="{{$ctrl.serviceName}}" />
                 </div>
                 <div class="inputsMove">
                     <label>Token</label>
@@ -53,6 +51,9 @@
             </div>
             <div class="col-md-4">
                 <h3 class="h3Text">Date Modified: </h3>
+            </div>
+            <div>
+                <button class="btn btn-primary" id="updateButton" type="button" ng-click="reset($ctrl.clickyCurrent)">Update item</button>
             </div>
         </div>
     </div>

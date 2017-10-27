@@ -45,3 +45,6 @@ pre {
 .spanClass {
     color: red;
 }
+#updateButton {
+    margin: .5px;
+}
