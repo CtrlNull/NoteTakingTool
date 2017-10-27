@@ -17,6 +17,7 @@ namespace Sabio.Models.Requests
         [Required]
         [MinLength(1), MaxLength(50)]
         public string Token { get; set; }
+
     }
     //public class TokenRequestCreate
     //{

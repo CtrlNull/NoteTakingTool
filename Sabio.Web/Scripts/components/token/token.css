@@ -27,21 +27,21 @@ pre {
     font-size: 16px;
     width: 70%;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: red;
+    color: black;
     margin-bottom: .5px;
 
 }
 .h3Text:after {
-    content: '';
     position: absolute;
     width: 50%;
     left: 25%;
-    bottom: -20px;
-    border-bottom: 1px solid #666;
 }
     .btn-block {
     width: 60px;
 }
 .signInButton {
     padding: 1px 2px 1px 1px;   
+}
+.spanClass {
+    color: red;
 }
