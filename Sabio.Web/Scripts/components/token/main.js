@@ -8,18 +8,35 @@
     angular.module(APPNAME)
         .controller('adminTokenControllerLocal', adminTokenControllerLocal);
 
-    adminTokenControllerLocal.$inject = ['tokenService'];
+    adminTokenControllerLocal.$inject = ['tokenService', '$stateParams'];
 
-    function adminTokenControllerLocal(tokenService) {
+    function adminTokenControllerLocal(tokenService, $stateParams) {
         var vm = this;
         vm.tokenService = tokenService
-        vm.item = null
+        vm.items = null
         vm.items = [];
         // Buttons
         vm.clickyGetAll = _clickyGetAll; // grabs getall button
         vm.clickyDelete = _clickyDelete; // grabs delete button
         vm.clickyUpdate = _clickyUpdate; // grabs update button
-
+        //Loop
+        //vm.repeatData = _repeatData;
+        // ==== Success/Error ====//
+        //--|OnSuccess|--//
+        function _success(response) {
+            vm.items = response.data.items;
+            console.log(vm.items);
+            vm.id = vm.items[1].id;
+        }
+        function _error() {
+            console.log("Error");
+        }
+        //create loop for data to spill on page
+        function _loopData() {
+            console.log("dataLoop fire");
+            tokenService.getAll(vm.item)
+                .then(_success, _error);
+        }
         //--|Get All<Button>|--//
         function _clickyGetAll() {
             console.log("GetAll Button");
@@ -33,30 +50,12 @@
             console.log("Update Button")
         }
         //----------------------
-        //if ($stateParams.id) {
-        //    vm.mode = 'edit';
-        //}
-        //else {
-        //    //vm.mode = 'create';
-        //}
-        //vm.id = $stateParams.id;
-        //----------------------
-
-        // ==== Success/Error ====//
-        //--|OnSuccess|--//
-        function _success(response) {
-            vm.items = response.data.items;
-
-            //if (data && data.item) {
-            //    vm.item.id == data.item;
-            //    vm.items.push(vm.item);
-            //    console.log("data worked");
-            //    console.log(data);
-            //}
+        if ($stateParams.items) {
+            vm.mode = 'edit';
         }
-        function _error() {
-            console.log("Error");
+        else {
+            //vm.mode = 'create';
         }
-
+        vm.id = $stateParams.id;
     };
 })();
