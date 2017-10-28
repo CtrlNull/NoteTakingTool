@@ -1,59 +1,50 @@
-﻿    <div class="container body-content">
-        <div class="jumbotron clearfix">
-            <!-- Left Side -->
-            <div class="column menu">
-                <!-- Data control buttons -->
-                <div class="buttons inputsMove">
-                    <button class="btn btn-primary" type="button" ng-click="$ctrl.clickyGetAll()">GetAll</button>
-                    <button class="btn btn-warning" type="button" ng-click="$ctrl.clickyUpdate()">Update</button>
-                    <button class="btn btn-danger" type="button" ng-click="$ctrl.clickyDelete()">Delete</button>
-                </div>
-                <div class="inputsMove">
-                    <label>User Id</label>
-                </div>
-                <div class="inputsMove">
-                    <input type="text" id="userIdInput" ng-model="$ctrl.updateId" placeholder="{{$ctrl.updateId}}" />
-                </div>
-                <!-- Sign in Buttons -->
-                <div class="inputsMove">
-                    <label>Service Name</label>
-                </div>
-                <div class="inputsMove">
-                    <input type="text" id="userServiceInput" ng-model="$ctrl.serviceName" placeholder="{{$ctrl.serviceName}}" />
-                </div>
-                <div class="inputsMove">
-                    <label>Token</label>
-                </div>
-                <div class="inputsMove">
-                    <input type="text" id="userTokenInput" ng-model="$ctrl.token" placeholder="{{$ctrl.token}}" />
-                </div>
+﻿<div class="container body-content">
+    <div class="jumbotron clearfix">
+        <!-- Left Side -->
+        <div class="column menu">
+            <!-- Data control buttons -->
+            <div class="buttons inputsMove">
+                <button class="btn btn-primary" type="button" ng-click="$ctrl.clickyGetAll()">GetAll</button>
+                <button class="btn btn-warning" type="button" ng-click="$ctrl.clickyUpdate()">Update</button>
+                <button class="btn btn-danger" type="button" ng-click="$ctrl.clickyDelete()">Delete</button>
             </div>
-            <!-- Right side -->
-            <div class="column content">
-                <!-- list url -->
-                <p>Example URL:<span></span></p>
-                <pre>{{$ctrl.id}}</pre>
+            <div class="inputsMove">
+                <label>User Id</label>
+            </div>
+            <div class="inputsMove">
+                <input type="text" id="userIdInput" ng-model="$ctrl.updateId" placeholder="{{$ctrl.updateId}}" />
+            </div>
+            <!-- Sign in Buttons -->
+            <div class="inputsMove">
+                <label>Service Name</label>
+            </div>
+            <div class="inputsMove">
+                <input type="text" id="userServiceInput" ng-model="$ctrl.serviceName" placeholder="{{$ctrl.serviceName}}" />
+            </div>
+            <div class="inputsMove">
+                <label>Token</label>
+            </div>
+            <div class="inputsMove">
+                <input type="text" id="userTokenInput" ng-model="$ctrl.token" placeholder="{{$ctrl.token}}" />
             </div>
         </div>
-        <!-- Lower Container -->
-        <div class="row listedItems" ng-repeat="$ctrl in $ctrl.items"> 
-            <div class="col-md-4">
-                <h3 class="h3Text">ID: <span class="spanClass">{{$ctrl.id}}</span></h3>
-            </div>
-            <div class="col-md-4">
-                <h3 class="h3Text">Service Name: <span class="spanClass">{{$ctrl.serviceName}}</span></h3>
-            </div>
-            <div class="col-md-4">
-                <h3 class="h3Text">Token: <span class="spanClass">{{$ctrl.token}}</span></h3>
-            </div>
-            <div class="col-md-4">
-                <h3 class="h3Text">Date Created: </h3>
-            </div>
-            <div class="col-md-4">
-                <h3 class="h3Text">Date Modified: </h3>
-            </div>
-            <div>
-                <button class="btn btn-primary" id="updateButton" type="button" ng-click="reset($ctrl.clickyCurrent)">Update item</button>
-            </div>
+        <!-- Right side -->
+        <div class="column content">
+            <!-- list url -->
+            <p>Example URL:<span></span></p>
+            <pre>{{$ctrl.id}}</pre>
         </div>
     </div>
+    <!-- Lower Container -->
+    <table>
+        <tbody>
+            <tr class="row listedItems" ng-repeat="row in $ctrl.items">
+                <td class="textColor">User ID: <span>{{row.id}} </span></td>
+                <td class="textColor">Service Name: <span>{{row.serviceName}} </span></td>
+                <td class="textColor">User Token: <span>{{row.token}} </span></td>
+                <td><button class="btn btn-primary" ng-click="$ctrl.btnModify(row.id)">Modify</button></td>
+                <!--<td><button class="btn btn-primary" ng-click="$ctrl.clickyCurrent(items);">Modify</button></td>-->
+            </tr>
+        </tbody>
+    </table>
+</div>

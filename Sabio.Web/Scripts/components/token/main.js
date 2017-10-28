@@ -19,7 +19,8 @@
         vm.clickyGetAll = _clickyGetAll; // grabs getall button
         vm.clickyDelete = _clickyDelete; // grabs delete button
         vm.clickyUpdate = _clickyUpdate; // grabs update button
-        vm.clickyCurrent = _clickyCurrent; // grabs local update
+        vm.btnModify = _btnModify; // grabs local update
+         
         //Loop
         //vm.repeatData = _repeatData;
         // ==== Success/Error ====//
@@ -45,13 +46,19 @@
         }
         function _clickyDelete() {
             console.log("Delete Button");
+            tokenService.Delete()
+                .then(_success, _error);
         }
         function _clickyUpdate() {
-            console.log("Update Button")
+            tokenService.Update()
+                .then(_success, _error);
         }
         // Manupulate current button
-        function _clickyCurrent() {
+        function _btnModify(id) {
             console.log("current click")
+            console.log(id);
+            
+
         }
         //----------------------
         if ($stateParams.items) {
