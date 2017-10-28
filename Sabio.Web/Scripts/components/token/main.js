@@ -21,14 +21,20 @@
         vm.btnUpdate = _btnUpdate; // grabs update button
         vm.btnModify = _btnModify; // grabs local update
          
-        //Loop
-        //vm.repeatData = _repeatData;
         // ==== Success/Error ====//
         //--|OnSuccess|--//
         function _success(response) {
             vm.items = response.data.items;
             console.log(vm.items);
         }
+        function _successModify(response) {
+            console.log("modify");
+            vm.items = response.data.items;
+            for (var i = 0; i < vm.items.length; i++) {
+                console.log(vm.items[0]);
+            }
+        }
+
         function _error() {
             console.log("Error");
         }
@@ -50,15 +56,13 @@
                 .then(_success, _error);
         }
         function _btnUpdate() {
-            tokenService.Update()
-                .then(_success, _error);
+            console.log();
         }
         // Manupulate current button
         function _btnModify(id) {
-            console.log("current click")
-            console.log(id);
-            
-
+            var userId = id;
+            tokenService.getAll(vm.item)
+                .then(_successModify, _error);
         }
         //----------------------
         if ($stateParams.items) {

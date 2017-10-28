@@ -33,18 +33,19 @@
             , url: "/admin/entity/token"
             , component: "adminTokenController"
         })
+        // ---- <GetById> ---- //
+        $stateProvider.state({
+            name: "tokenGetById"
+            , url: "/admin/entity/token/{id}"
+            , component: "adminTokenGetById"
+        });
         //// ---- <Create> ---- //
         //$stateProvider.state({
         //    name: "tokenCreate"
         //    , url: "/admin/entity/token"
         //    , component: "adminTokenCreate"
         //});
-        //// ---- <GetById> ---- //
-        //$stateProvider.state({
-        //    name: "tokenGetById"
-        //    , url: "/admin/entity/token/{id}"
-        //    , component: "adminTokenGetById"
-        //});
+
         //// ---- <Delete> ---- //
         //$stateProvider.state({
         //    name: "tokenDelete"
@@ -57,7 +58,7 @@
         //    , url: "/admin/entity/token/{id}"
         //    , component: "adminTokenUpdate"
         //});
- 	$stateProvider.state({   
+ 	    $stateProvider.state({   
             name: 'create-exampleentity',
             url: '/admin/entity/example/new',
             component: 'adminEditExample'
