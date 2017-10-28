@@ -16,9 +16,9 @@
         vm.items = null
         vm.items = [];
         // Buttons
-        vm.clickyGetAll = _clickyGetAll; // grabs getall button
-        vm.clickyDelete = _clickyDelete; // grabs delete button
-        vm.clickyUpdate = _clickyUpdate; // grabs update button
+        vm.btnGetAll = _btnGetAll; // grabs getall button
+        vm.btnDelete = _btnDelete; // grabs delete button
+        vm.btnUpdate = _btnUpdate; // grabs update button
         vm.btnModify = _btnModify; // grabs local update
          
         //Loop
@@ -39,17 +39,17 @@
                 .then(_success, _error);
         }
         //--|Get All<Button>|--//
-        function _clickyGetAll() {
+        function _btnGetAll() {
             console.log("GetAll Button");
             tokenService.getAll(vm.item)
                 .then(_success, _error);
         }
-        function _clickyDelete() {
+        function _btnDelete() {
             console.log("Delete Button");
             tokenService.Delete()
                 .then(_success, _error);
         }
-        function _clickyUpdate() {
+        function _btnUpdate() {
             tokenService.Update()
                 .then(_success, _error);
         }
