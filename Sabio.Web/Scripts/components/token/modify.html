@@ -1,0 +1,32 @@
+﻿<div>
+    <div class="jumbotron clearfix">
+        <!-- Left Side -->
+        <div class="column menu" >
+            <!-- Data control buttons -->
+            <div class="buttons inputsMove">
+                <td><button class="btn btn-primary" ui-sref='getAll-token'>GetAll</button></td>
+                <button class="btn btn-warning" type="button" ng-click="$ctrl.btnUpdate()">Update</button>
+            </div>
+            <div class="inputsMove">
+                <label>User Id</label>
+            </div>
+            <div class="inputsMove">
+                <input type="text" id="userIdInput" ng-model="$ctrl.modId" value="{{$ctrl.modId}}" />
+            </div>
+            <!-- Sign in Buttons -->
+            <div class="inputsMove">
+                <label>Service Name</label>
+            </div>
+            <div class="inputsMove">
+                <input type="text" id="userServiceInput" ng-model="$ctrl.modServiceName" value="{{$ctrl.modserviceName}}" />
+            </div>
+            <div class="inputsMove">
+                <label>Token</label>
+            </div>
+            <div class="inputsMove">
+                <input type="text" id="userTokenInput" ng-model="$ctrl.modToken" value="{{$ctrl.modToken}}" />
+            </div>
+        </div>
+        <!-- Right side -->
+    </div>
+</div>

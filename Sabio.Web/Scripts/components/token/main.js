@@ -12,13 +12,12 @@
 
     function adminTokenController(tokenService, $stateParams) {
         var vm = this;
-        vm.tokenService = tokenService
+        vm.tokenService = tokenService;
         vm.items = null
         vm.items = [];
         // Buttons
         vm.btnGetAll = _btnGetAll; // grabs getall button
         vm.btnDelete = _btnDelete; // grabs delete button
-        vm.btnUpdate = _btnUpdate; // grabs update button
         vm.btnModify = _btnModify; // grabs local update
          
         //create loop for data to spill on page
@@ -41,15 +40,11 @@
                 .then(_success, _error);
         }
         // Manupulate current button
-        function _btnModify(row) {
-            vm.updateId = row.id;
-            vm.serviceName = row.serviceName;
-            vm.token = row.token
-        }
-        //--|Modify/Update<Button>|--//
-        function _btnUpdate() {
-            console.log("update works");
-            console.log()
+        function _btnModify(index) {
+            var data = vm.items[index];
+            console.log(data.id);
+            //tokenService.getById(data.id)
+            //    .then(_success, _error);
         }
         // =========== Success/Error ============= // 
         //--|OnSuccess(GetAll)|--//
@@ -60,19 +55,9 @@
         function _error() {
             console.log("Error");
         }
-        //----Success Modify (changes button data) ---//
-        function _successModify(response, userId) {
-            console.log("modify");
-            vm.items = response.data.items;
-            var newId = userId;
-            console.log(newId);
-            for (var i = 0; i < vm.items.length; i++) {
-            }
-        }
-
         //----------------------
         if ($stateParams.items) {
-            vm.mode = 'edit';
+            vm.mode = 'edit-token';
         }
         else {
             //vm.mode = 'create';

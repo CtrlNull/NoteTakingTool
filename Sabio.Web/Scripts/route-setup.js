@@ -33,31 +33,20 @@
         $stateProvider.state({
             name: "tokenGetById"
             , url: "/admin/entity/token/{id:int}"
-            , component: "adminTokenGetById"
+            , component: "adminTokenEditController"
         });
-        //// ---- <Create> ---- //
+        //// ---- <Update> ---- //
+        $stateProvider.state({
+            name: "tokenUpdate"
+            , url: "/admin/entity/token/"
+            , component: "adminTokenEditController"
+        });
+                //// ---- <Create> ---- //
         //$stateProvider.state({
         //    name: "tokenCreate"
         //    , url: "/admin/entity/token"
-        //    , component: "adminTokenCreate"
+        //    , component: "adminTokenCreateController"
         //});
-        $stateProvider.state({
-            name: 'create-token',
-            url: '/admin/entity/token/new',
-            component: 'adminCreateToken'
-        })
-
-        //// ---- <Update> ---- //
-        //$stateProvider.state({
-        //    name: "tokenUpdate"
-        //    , url: "/admin/entity/token/{id}"
-        //    , component: "adminTokenUpdate"
-        //});
- 	    $stateProvider.state({   
-            name: 'create-exampleentity',
-            url: '/admin/entity/example/new',
-            component: 'adminEditExample'
-        });
 
         /*
         URLS for cars:
@@ -65,6 +54,11 @@
         /admin/entity/cars/123   (edit a specific car that already exists)
         /admin/entity/cars/new   (create a new car)
         */
+        $stateProvider.state({
+            name: 'create-exampleentity',
+            url: '/admin/entity/example/new',
+            component: 'adminEditExample'
+        });
 
         $stateProvider.state({
             name: 'view-cars',

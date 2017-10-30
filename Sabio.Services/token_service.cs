@@ -97,7 +97,7 @@ namespace Sabio.Services
         public void Update(TokenUpdateRequest req)
         {
             dataProvider.ExecuteNonQuery(
-                "third_party_token_delete",
+                "third_party_token_update",
                 inputParamMapper: delegate (SqlParameterCollection parameters)
                 {
                     parameters.AddWithValue("@id", req.Id);

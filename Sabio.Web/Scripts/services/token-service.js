@@ -23,10 +23,10 @@
             });
         }
         //==| Get by id |==///
-        function _getById() {
+        function _getById(id) {
             return $http({
                 method: "GET"
-                , url: "api/token/{id:int}"
+                , url: "/api/token/" + id
             })
         }
         //==| Delete |==//
@@ -47,7 +47,7 @@
         function _update() {
             return $http({
                 method: "PUT"
-                , url: "api/token/{id:int}"
+                , url: "api/token/"
             })
         }
     }

@@ -254,9 +254,10 @@
     </Content>
     <Content Include="Scripts\components\admin-edit-example\main.html" />
     <Content Include="Scripts\components\admin-edit-example\main.js" />
-    <Content Include="Scripts\components\token\Delete.js" />
+    <Content Include="Scripts\components\token\edit.js" />
     <Content Include="Scripts\components\token\main.html" />
     <Content Include="Scripts\components\token\main.js" />
+    <Content Include="Scripts\components\token\modify.html" />
     <Content Include="Scripts\components\token\token.css" />
     <Content Include="Scripts\components\token\tokenPics\github.png" />
     <Content Include="Scripts\components\token\tokenPics\google.png" />
