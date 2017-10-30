@@ -37,17 +37,19 @@
             })
         }
         //==| Create |==//
-        function _create() {
+        function _create(updateItems) {
             return $http({
                 method: "POST"
-                , url: "api/token"
+                , url: "/api/token/"
+                , data: JSON.stringify(updateItems)
             })
         }
         //==| Update |==//
-        function _update() {
+        function _update(updateItems) {
             return $http({
                 method: "PUT"
-                , url: "api/token/"
+                , url: "/api/token/"
+                , data: JSON.stringify(updateItems)
             })
         }
     }

@@ -15,6 +15,7 @@
         vm.item = [];
         vm.btnGetAll = _btnGetAll;
         vm.btnUpdate = _btnUpdate;
+        vm.btnCreate = _btnCreate
 
         if ($stateParams.id) {
             tokenService.getById($stateParams.id)
@@ -44,15 +45,32 @@
             tokenService.update(updateItems)
                 .then(_success, Error);
         }
+        function _btnCreate() {
+            var updateItems = {
+                    id: vm.modId
+                    , serviceName: vm.modServiceName
+                    , token: vm.modToken
+            };
+            console.log(updateItems);
+            tokenService.create(updateItems)
+                .then(_successCreate, Error);
+
+        }
         // ~~~~~~~~~~~~~~~~~~~~~~~~~ Success/Error ~~~~~~~~~~~~~~~~~~~~~~~~~~ // 
         //--|OnSuccess(GetAll)|--//
         function _success(response) {
             vm.items = response.data.items;
             console.log(vm.items);
         }
+        //--|CreateSucess|--//
+        function _successCreate() {
+            console.log("Create Worked");
+        }
+        //--|Error|--//
         function _Error() {
             console.log("Error");
         }
+
 
 
 

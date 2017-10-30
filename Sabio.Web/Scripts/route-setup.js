@@ -41,12 +41,12 @@
             , url: "/admin/entity/token/"
             , component: "adminTokenEditController"
         });
-                //// ---- <Create> ---- //
-        //$stateProvider.state({
-        //    name: "tokenCreate"
-        //    , url: "/admin/entity/token"
-        //    , component: "adminTokenCreateController"
-        //});
+        // ---- <Create> ---- //
+        $stateProvider.state({
+            name: "tokenCreate"
+            , url: "/admin/entity/token/"
+            , component: "adminTokenCreateController"
+        });
 
         /*
         URLS for cars:
