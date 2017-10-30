@@ -30,7 +30,7 @@
             })
         }
         //==| Delete |==//
-        function _delete() {
+        function _delete(id) {
             return $http({
                 method: "DELETE"
                 , url: "api/token/{id:int}"

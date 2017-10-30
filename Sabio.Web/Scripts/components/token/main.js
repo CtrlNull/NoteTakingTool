@@ -21,20 +21,12 @@
         vm.btnUpdate = _btnUpdate; // grabs update button
         vm.btnModify = _btnModify; // grabs local update
          
-        // ==== Success/Error ====//
-        //--|OnSuccess|--//
+        // ==== Success/Error ====//me 
+        //--|OnSuccess(GetAll)|--//
         function _success(response) {
             vm.items = response.data.items;
             console.log(vm.items);
         }
-        function _successModify(response) {
-            console.log("modify");
-            vm.items = response.data.items;
-            for (var i = 0; i < vm.items.length; i++) {
-                console.log(vm.items[0]);
-            }
-        }
-
         function _error() {
             console.log("Error");
         }
@@ -50,11 +42,14 @@
             tokenService.getAll(vm.item)
                 .then(_success, _error);
         }
-        function _btnDelete() {
-            console.log("Delete Button");
-            tokenService.Delete()
-                .then(_success, _error);
+        //--|Delete<Button>--//
+        function _btnDelete(index) {
+            var id = vm.items[index];
+            console.log(id);
+            //tokenService.delete(id)
+            //    .then(_success, _error);
         }
+        //--|Modify/Update<Button>|--//
         function _btnUpdate() {
             console.log();
         }
@@ -63,7 +58,18 @@
             var userId = id;
             tokenService.getAll(vm.item)
                 .then(_successModify, _error);
+            _successModify(userId);
         }
+        //----Success Modify (changes button data) ---//
+        function _successModify(response, userId) {
+            console.log("modify");
+            vm.items = response.data.items;
+            var newId = userId;
+            console.log(newId);
+            for (var i = 0; i < vm.items.length; i++) {
+            }
+        }
+
         //----------------------
         if ($stateParams.items) {
             vm.mode = 'edit';

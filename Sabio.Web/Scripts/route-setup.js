@@ -16,23 +16,19 @@
         /admin/entity/tags/123 (edit a specific tag, the route is actually defined as /admin/entity/tags/{id})
         /admin/entity/tags/new (screen to create a new tag)
         */
-        // ---- <Example> ---- //
-        $stateProvider.state({
-            name: 'edit-token',
-            url: '/admin/entity/token/{id:int}',
-            component: 'adminEditToken'
-        })
-        $stateProvider.state({
-            name: 'create-token',
-            url: '/admin/entity/token/new',
-            component: 'adminEditToken'
-        })
+        //=~~~~~~===<Ralph_Fonz>===~~~~~~~~~=//
         // ---- <Get All> ---- //
         $stateProvider.state({
             name: 'getAll-token'
             , url: "/admin/entity/token"
             , component: "adminTokenController"
         })
+        //// ---- <Delete> ---- //
+        $stateProvider.state({
+            name: "tokenDelete"
+            , url: "/admin/entity/token/{id:int}"
+            , component: "adminTokenController"
+        });
         // ---- <GetById> ---- //
         $stateProvider.state({
             name: "tokenGetById"
@@ -45,13 +41,12 @@
         //    , url: "/admin/entity/token"
         //    , component: "adminTokenCreate"
         //});
+        $stateProvider.state({
+            name: 'create-token',
+            url: '/admin/entity/token/new',
+            component: 'adminEditToken'
+        })
 
-        //// ---- <Delete> ---- //
-        //$stateProvider.state({
-        //    name: "tokenDelete"
-        //    , url: "/admin/entity/token/{id}"
-        //    , component: "adminTokenDelete"
-        //});
         //// ---- <Update> ---- //
         //$stateProvider.state({
         //    name: "tokenUpdate"
