@@ -5,25 +5,26 @@
             <!-- Data control buttons -->
             <div class="buttons inputsMove">
                 <button class="btn btn-primary" type="button" ng-click="$ctrl.btnGetAll()">GetAll</button>
+                <button class="btn btn-warning" type="button" ng-click="$ctrl.btnUpdate()">Update</button>
             </div>
             <div class="inputsMove">
                 <label>User Id</label>
             </div>
             <div class="inputsMove">
-                <input type="text" id="userIdInput" ng-model="$ctrl.updateId" placeholder="{{$ctrl.updateId}}" />
+                <input type="text" id="userIdInput" ng-model="$ctrl.updateId" value="{{$ctrl.updateId}}" />
             </div>
             <!-- Sign in Buttons -->
             <div class="inputsMove">
                 <label>Service Name</label>
             </div>
             <div class="inputsMove">
-                <input type="text" id="userServiceInput" ng-model="$ctrl.serviceName" placeholder="{{$ctrl.serviceName}}" />
+                <input type="text" id="userServiceInput" ng-model="$ctrl.serviceName" value="{{$ctrl.serviceName}}" />
             </div>
             <div class="inputsMove">
                 <label>Token</label>
             </div>
             <div class="inputsMove">
-                <input type="text" id="userTokenInput" ng-model="$ctrl.token" placeholder="{{$ctrl.token}}" />
+                <input type="text" id="userTokenInput" ng-model="$ctrl.token" value="{{$ctrl.token}}" />
             </div>
         </div>
         <!-- Right side -->
@@ -40,7 +41,7 @@
                 <td class="textColor">User ID: <span>{{row.id}} </span></td>
                 <td class="textColor">Service Name: <span>{{row.serviceName}} </span></td>
                 <td class="textColor">User Token: <span>{{row.token}} </span></td>
-                <td><button class="btn btn-primary" ng-click="$ctrl.btnModify(row.id)">Modify</button></td>
+                <td><button class="btn btn-primary" ng-click="$ctrl.btnModify(row)">Modify</button></td>
                 <td><button class="btn btn-danger" ng-click="$ctrl.btnDelete($index)">Delete</button></td>
                 <!--<td><button class="btn btn-primary" ng-click="$ctrl.clickyCurrent(items);">Modify</button></td>-->
             </tr>

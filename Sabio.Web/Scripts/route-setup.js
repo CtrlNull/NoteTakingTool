@@ -32,7 +32,7 @@
         // ---- <GetById> ---- //
         $stateProvider.state({
             name: "tokenGetById"
-            , url: "/admin/entity/token/{id}"
+            , url: "/admin/entity/token/{id:int}"
             , component: "adminTokenGetById"
         });
         //// ---- <Create> ---- //
@@ -44,7 +44,7 @@
         $stateProvider.state({
             name: 'create-token',
             url: '/admin/entity/token/new',
-            component: 'adminEditToken'
+            component: 'adminCreateToken'
         })
 
         //// ---- <Update> ---- //

@@ -33,7 +33,7 @@
         function _delete(id) {
             return $http({
                 method: "DELETE"
-                , url: "api/token/{id:int}"
+                , url: "/api/token/" + id
             })
         }
         //==| Create |==//

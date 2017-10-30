@@ -3,14 +3,14 @@
     angular.module(APPNAME)
         .component('adminTokenController', {
         templateUrl: '/Scripts/components/token/main.html'
-        , controller: 'adminTokenControllerLocal'
+        , controller: 'adminTokenController'
         });
     angular.module(APPNAME)
-        .controller('adminTokenControllerLocal', adminTokenControllerLocal);
+        .controller('adminTokenController', adminTokenController);
 
-    adminTokenControllerLocal.$inject = ['tokenService', '$stateParams'];
+    adminTokenController.$inject = ['tokenService', '$stateParams'];
 
-    function adminTokenControllerLocal(tokenService, $stateParams) {
+    function adminTokenController(tokenService, $stateParams) {
         var vm = this;
         vm.tokenService = tokenService
         vm.items = null
@@ -21,15 +21,6 @@
         vm.btnUpdate = _btnUpdate; // grabs update button
         vm.btnModify = _btnModify; // grabs local update
          
-        // ==== Success/Error ====//me 
-        //--|OnSuccess(GetAll)|--//
-        function _success(response) {
-            vm.items = response.data.items;
-            console.log(vm.items);
-        }
-        function _error() {
-            console.log("Error");
-        }
         //create loop for data to spill on page
         function _loopData() {
             console.log("dataLoop fire");
@@ -44,21 +35,30 @@
         }
         //--|Delete<Button>--//
         function _btnDelete(index) {
-            var id = vm.items[index];
-            console.log(id);
-            //tokenService.delete(id)
-            //    .then(_success, _error);
+            var data = vm.items[index];
+            console.log(data.id);
+            tokenService.delete(data.id)
+                .then(_success, _error);
+        }
+        // Manupulate current button
+        function _btnModify(row) {
+            vm.updateId = row.id;
+            vm.serviceName = row.serviceName;
+            vm.token = row.token
         }
         //--|Modify/Update<Button>|--//
         function _btnUpdate() {
-            console.log();
+            console.log("update works");
+            console.log()
         }
-        // Manupulate current button
-        function _btnModify(id) {
-            var userId = id;
-            tokenService.getAll(vm.item)
-                .then(_successModify, _error);
-            _successModify(userId);
+        // =========== Success/Error ============= // 
+        //--|OnSuccess(GetAll)|--//
+        function _success(response) {
+            vm.items = response.data.items;
+            console.log(vm.items);
+        }
+        function _error() {
+            console.log("Error");
         }
         //----Success Modify (changes button data) ---//
         function _successModify(response, userId) {
