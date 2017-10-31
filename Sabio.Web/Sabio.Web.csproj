@@ -228,6 +228,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="Content\index.css" />
+    <Content Include="Content\index.html" />
+    <Content Include="Content\admin-index.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css" />
@@ -252,6 +255,8 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Scripts\components\admin-edit-car\main.html" />
+    <Content Include="Scripts\components\admin-edit-car\main.js" />
     <Content Include="Scripts\components\admin-edit-example\main.html" />
     <Content Include="Scripts\components\admin-edit-example\main.js" />
     <Content Include="Scripts\components\token\edit.js" />
@@ -264,11 +269,18 @@
     <Content Include="Scripts\components\token\tokenPics\slack.png" />
     <Content Include="Scripts\components\admin-view-cars\main.html" />
     <Content Include="Scripts\components\admin-view-cars\main.js" />
+    <Content Include="Scripts\components\note-card\main.html" />
+    <Content Include="Scripts\components\note-card\main.js" />
+    <Content Include="Scripts\components\notes-display\main.html" />
+    <Content Include="Scripts\components\notes-display\main.js" />
+    <Content Include="Scripts\index.js" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\index-routes.js" />
     <Content Include="Scripts\route-setup.js" />
     <Content Include="Scripts\services\carsService.js" />
     <Content Include="Scripts\services\exampleEntityService.js" />
     <Content Include="Scripts\services\token-service.js" />
+    <Content Include="Scripts\services\notes-service.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
