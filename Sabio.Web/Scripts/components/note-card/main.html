@@ -1,0 +1,33 @@
+<div class='note-card'>
+    <div class='controls'>
+        <button ng-click='$ctrl.addChildNote()'>+</button>
+        <button ng-if='$ctrl.note.id !== 0' ng-click='$ctrl.deleteThisNote()'>X</button>
+
+        <span
+            ng-if='$ctrl.note.id !== 0'
+            class='toggle-expanded'
+            ng-class='{toggled: $ctrl.expanded}'
+            ng-click='$ctrl.expanded = !$ctrl.expanded'
+            title='Expand child notes'
+            >&#9658;</span>
+
+        <span
+            ng-click='$ctrl.sortDesc = !$ctrl.sortDesc'
+            class='toggle-sort'
+            ng-class='{toggled: $ctrl.sortDesc}'
+            title='Change child-note sort direction'
+            >&#8673;</span>
+
+        <a ng-if='$ctrl.note.id !== 0' ui-sref='note({ id: $ctrl.note.id })'>{{$ctrl.note.id}}</a>
+    </div>
+
+    <textarea ng-if='$ctrl.note.id !== 0' ng-model='$ctrl.note.body' ng-blur='$ctrl.saveNote()'></textarea>
+
+    <div>
+        <note-card
+            ng-repeat='note in $ctrl.notes | orderBy:"+":$ctrl.sortDesc'
+            note='note'
+            on-deleted='$ctrl.childNoteDeleted($index)'>
+        </note-card>
+    </div>
+</div>

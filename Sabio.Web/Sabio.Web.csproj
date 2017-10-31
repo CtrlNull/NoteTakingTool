@@ -227,6 +227,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="Content\index.css" />
+    <Content Include="Content\index.html" />
     <Content Include="Content\admin-index.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.css.map" />
@@ -237,7 +239,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\admin-index.html" />
-    <Content Include="Content\Site.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -257,10 +258,17 @@
     <Content Include="Scripts\components\admin-edit-example\main.js" />
     <Content Include="Scripts\components\admin-view-cars\main.html" />
     <Content Include="Scripts\components\admin-view-cars\main.js" />
+    <Content Include="Scripts\components\note-card\main.html" />
+    <Content Include="Scripts\components\note-card\main.js" />
+    <Content Include="Scripts\components\notes-display\main.html" />
+    <Content Include="Scripts\components\notes-display\main.js" />
+    <Content Include="Scripts\index.js" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\index-routes.js" />
     <Content Include="Scripts\route-setup.js" />
     <Content Include="Scripts\services\carsService.js" />
     <Content Include="Scripts\services\exampleEntityService.js" />
+    <Content Include="Scripts\services\notes-service.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
