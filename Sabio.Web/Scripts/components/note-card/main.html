@@ -18,10 +18,21 @@
             title='Change child-note sort direction'
             >&#8673;</span>
 
+        <label ng-if='$ctrl.note.id !== 0'>
+            Type:
+            <select ng-model='$ctrl.note.type'>
+                <option value='text'>Text</option>
+                <option value='graphviz'>Graphviz</option>
+            </select>
+        </label>
+
         <a ng-if='$ctrl.note.id !== 0' ui-sref='note({ id: $ctrl.note.id })'>{{$ctrl.note.id}}</a>
     </div>
 
-    <textarea ng-if='$ctrl.note.id !== 0' ng-model='$ctrl.note.body' ng-blur='$ctrl.saveNote()'></textarea>
+    <div ng-if='$ctrl.note.id !== 0' ng-switch='$ctrl.note.type'>
+        <note-editor-text ng-switch-when='text' note='$ctrl.note' on-save='$ctrl.saveNote()'></note-editor-text>
+        <note-editor-graphviz ng-switch-when='graphviz' note='$ctrl.note' on-save='$ctrl.saveNote()'></note-editor-graphviz>
+    </div>
 
     <div>
         <note-card

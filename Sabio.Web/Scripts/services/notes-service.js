@@ -8,6 +8,7 @@
     A "note" looks like this:
     {
         "id": 1, // auto-generated, starts at 1
+        "type": "text", // could be anything: "text", "markdown", "youtube", "graphviz", etc.
         "body": null,
         "parents": [] // ids of parent, or 0 if this is a top-level note
     }
