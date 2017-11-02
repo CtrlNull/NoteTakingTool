@@ -1,0 +1,17 @@
+<div class='editor-graphviz'>
+    <label>
+        <input type='checkbox' ng-model='$ctrl.editMode'/>
+        Edit
+    </label>
+
+    <div ng-if='$ctrl.editMode'>
+        <textarea
+            spellcheck="false"
+            ng-model='$ctrl.note.body'
+            placeholder='Enter Graphviz description'
+             ng-blur='$ctrl.onSave()'
+             ></textarea>
+    </div>
+
+    <div ng-if='!$ctrl.editMode' ng-bind-html="$ctrl.svg"></div>
+</div>

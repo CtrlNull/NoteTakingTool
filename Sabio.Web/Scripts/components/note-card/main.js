@@ -74,6 +74,7 @@
                 .then(function(){
                     var note = {
                         body: null,
+                        type: 'text',
                         parents: [vm.note.id]
                     };
 

@@ -8,8 +8,11 @@
     A "note" looks like this:
     {
         "id": 1, // auto-generated, starts at 1
+        "type": "text", // could be anything: "text", "markdown", "youtube", "graphviz", etc.
         "body": null,
         "parents": [] // ids of parent, or 0 if this is a top-level note
+        "dateCreated": auto-populated Date object
+        "dateModified": auto-populated Date object
     }
     */
 
@@ -28,12 +31,15 @@
 
         // ↓↓↓↓↓↓↓↓ INTERNAL implementation details below
 
-        var dbPromise = idb.open('user-data', 1, function (upgradeDb) {
+        var dbPromise = idb.open('user-data', 2, function (upgradeDb) {
             // This is the "database migration" portion:
             switch (upgradeDb.oldVersion) {
                 case 0:
                     var store = upgradeDb.createObjectStore('notes', { keyPath: 'id', unique: true, autoIncrement: true });
                     store.createIndex('parents', 'parents', { unique: false, multiEntry: true });
+                case 1:
+                    upgradeDb.transaction.objectStore('notes')
+                        .createIndex('dateCreated', 'dateCreated', { unique: false, multiEntry: true });
             }
         });
 
@@ -67,9 +73,16 @@
                 seen[parentId] = true;
             }
 
+            // attach dates to the note. angular.toJson will convert these dates to strings
+            if (!note.dateCreated){
+                note.dateCreated = new Date();
+            }
+            note.dateModified = new Date();
+
             // assertion: at this point, we know this is a valid note
 
-            var noteToSave = angular.fromJson(angular.toJson(note));
+            var noteToSave = angular.copy(note);
+            delete noteToSave.$$hashkey; // todo: remove angular stuff recursively
 
             var promise =
                 dbPromise.then(db =>
