@@ -241,7 +241,6 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\admin-index.html" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\token-index.html" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
