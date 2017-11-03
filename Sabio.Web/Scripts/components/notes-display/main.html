@@ -1,8 +1,11 @@
-﻿<div>
+﻿<tool-bar></tool-bar>
+
+<main>
+    <note-tree note='$ctrl.rootNote'></note-tree>
     <note-card
         ng-if='$ctrl.rootNote'
         note='$ctrl.rootNote'
         expanded='true'
         ng-class='{ "root-note": true }'>
     </note-card>
-</div>
+</main>
