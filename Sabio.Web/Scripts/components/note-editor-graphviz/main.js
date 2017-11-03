@@ -15,24 +15,34 @@
     angular.module('BananaPad')
         .controller('EditorGraphvizController', EditorGraphvizController);
 
-    EditorGraphvizController.$inject = ['$scope', '$sce'];
+    EditorGraphvizController.$inject = ['$scope', '$sce', '$timeout'];
 
-    function EditorGraphvizController($scope, $sce){
+    function EditorGraphvizController($scope, $sce, $timeout){
         var vm = this;
 
         $scope.$watch(
             function(){ return vm.editMode },
             function(editMode){
                 if (!editMode){
-                    vm.note.svg = Viz(vm.note.body);
-                }
-            }
-        );
+                    vm.rendering = true;
+                    $timeout(function(){
+                        try {
+                            var svg = Viz(vm.note.body);
+                            svg = svg.replace(
+                                /(<svg.+?)width=".+?".+?height="(.+?)"/,
+                                (m, c1, c2) => c1 + 'style="max-width: 100%; max-height: ' + c2 + '"'
+                            );
+                            vm.svg = $sce.trustAsHtml(svg);
+                            vm.errorMessage = null;
+                        }
+                        catch (e){
+                            vm.svg = null;
+                            vm.errorMessage = String(e);
+                        }
 
-        $scope.$watch(
-            function(){ return vm.note.svg },
-            function(svg){
-                vm.svg = $sce.trustAsHtml(svg);
+                        vm.rendering = false;
+                    }, 1);
+                }
             }
         );
     }

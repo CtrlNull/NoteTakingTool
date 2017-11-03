@@ -1,47 +1,59 @@
 <div class='note-card'>
-    <div class='controls'>
-        <button ng-click='$ctrl.addChildNote()'>+</button>
-        <button ng-if='$ctrl.note.id !== 0' ng-click='$ctrl.deleteThisNote()'>X</button>
-
-        <span
-            ng-if='$ctrl.note.id !== 0'
-            class='toggle-expanded'
-            ng-class='{toggled: $ctrl.expanded}'
-            ng-click='$ctrl.expanded = !$ctrl.expanded'
-            title='Expand child notes'
-            >&#9658;</span>
-
-        <span
-            ng-click='$ctrl.sortDesc = !$ctrl.sortDesc'
-            class='toggle-sort'
-            ng-class='{toggled: $ctrl.sortDesc}'
-            title='Change child-note sort direction'
-            >&#8673;</span>
-
-        <label ng-if='$ctrl.note.id !== 0'>
-            Type:
-            <select ng-model='$ctrl.note.type'>
-                <option value='text'>Text</option>
-                <option value='graphviz'>Graphviz</option>
-            </select>
-        </label>
-
-        <a ng-if='$ctrl.note.id !== 0' ui-sref='note({ id: $ctrl.note.id })'>{{$ctrl.note.id}}</a>
-
-        <span>Created: {{$ctrl.note.dateCreated}}</span>
-        <span>Modified: {{$ctrl.note.dateModified}}</span>
-    </div>
-
     <div ng-if='$ctrl.note.id !== 0' ng-switch='$ctrl.note.type'>
         <note-editor-text ng-switch-when='text' note='$ctrl.note' on-save='$ctrl.saveNote()'></note-editor-text>
         <note-editor-graphviz ng-switch-when='graphviz' note='$ctrl.note' on-save='$ctrl.saveNote()'></note-editor-graphviz>
+        <note-editor-tag-search ng-switch-when='tag-search' note='$ctrl.note' on-save='$ctrl.saveNote()' on-updated='$ctrl.onNoteUpdated()'></note-editor-tag-search>
     </div>
 
-    <div>
-        <note-card
-            ng-repeat='note in $ctrl.notes | orderBy:"+":$ctrl.sortDesc'
-            note='note'
-            on-deleted='$ctrl.childNoteDeleted($index)'>
-        </note-card>
+    <div class='controls'>
+        <div>
+            <span
+                ng-if='$ctrl.note.id !== 0 && $ctrl.childCount > 0'
+                class='toggle-expanded'
+                ng-class='{toggled: $ctrl.expanded}'
+                ng-click='$ctrl.expanded = !$ctrl.expanded'
+                title='Expand child notes'
+                >&#9658;</span>
+
+            <span
+                ng-if='$ctrl.childCount > 1'
+                ng-click='$ctrl.sortDesc = !$ctrl.sortDesc'
+                class='toggle-sort'
+                ng-class='{toggled: $ctrl.sortDesc}'
+                title='Change child-note sort direction'
+                >&#8673;</span>
+
+            <label ng-if='$ctrl.note.id !== 0'>
+                Type:
+                <select ng-model='$ctrl.note.type'>
+                    <option value='text'>Text</option>
+                    <option value='graphviz'>Graphviz</option>
+                    <option value='tag-search'>Tag search</option>
+                </select>
+            </label>
+
+            <button ng-click='$ctrl.addChildNote()'>+</button>
+            <button ng-if='$ctrl.note.id !== 0' ng-click='$ctrl.unlinkThisNote()'>X</button>
+
+            <a class='note-link' ng-if='$ctrl.note.id !== 0' ui-sref='note({ id: $ctrl.note.id })'>{{$ctrl.note.id}}</a>
+
+            <label ng-if='$ctrl.note.id !== 0'>
+                Tags:
+                <input type='text' ng-model='$ctrl.tagsInput' ng-blur='$ctrl.updateTags()'>
+            </label>
+        </div>
+
+        <span class='dates' ng-if='$ctrl.note.id !== 0'>
+            {{$ctrl.note.dateModified | date:'yyyy-MM-dd h:mm:ss a' }}
+            (created: {{$ctrl.note.dateCreated | date:'yyyy-MM-dd h:mm:ss a' }})
+        </span>
     </div>
+</div>
+
+<div class='child-notes'>
+    <note-card
+        ng-repeat='note in $ctrl.notes | orderBy:"+":$ctrl.sortDesc'
+        note='note'
+        on-unlink='$ctrl.unlinkChildNote($index, note)'>
+    </note-card>
 </div>

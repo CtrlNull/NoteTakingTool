@@ -1,37 +1,140 @@
+@import 'fonts.css';
+
 body {
     font-family: 'Roboto';
-
-    background-color: #f3f3f3;
+    margin: 0px;
 }
 
-.note-card {
+.error {
+    color: red;
+}
+
+#main-ui-view {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #f3f3f3;
+    justify-content: stretch;
+}
+
+notes-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    flex: 1;
+}
+
+notes-display > * {
+    flex: 0;
+}
+
+notes-display > main {
+    display: flex;
+    flex: 1;
+    overflow-x: hidden;
+}
+
+notes-display > main > note-card {
+    flex: 1;
+    border: 1px solid gainsboro;
+    border-left: 0px;
+    display: block;
+    padding: 0.3em;
+    overflow-y: auto;
+}
+
+note-card:not(.root-note) .child-notes {
+    margin-left: 1em;
+}
+
+tool-bar {
+    padding: 0.5em;
+}
+
+note-tree {
+    flex: 0;
+    min-width: 18em;
+    display: block;
+    border: 1px solid gainsboro;
+    padding: 0.3em;
+    background-color: white;
+}
+
+.note-tree-title {
+    cursor: pointer;
+    user-select: none;
+}
+
+note-tree .expander:focus {
+    outline: 0px;
+}
+
+.note-tree-children {
+    padding-left: 1.4em;
+}
+
+note-tree .expander {
+    border: 1px solid #d2d2d2;
+    background-color: transparent;
+    font-size: 0.7em;
+    display: inline-block;
+    width: 1.4em;
+    padding: 0px;
+    height: 1.5em;
+    cursor: pointer;
+}
+
+note-card {
     display: flex;
     flex-direction: column;
     flex: 1;
 }
 
-:not(.root-note) > .note-card {
+note-card .note-link {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    opacity: 0.5;
+    font-size: 0.8em;
+    color: #0e0e7c !important;
+}
+
+note-card .note-link:link {
+    text-decoration: none;
+}
+
+note-card:not(.root-note) .note-card {
     padding: 0.4em;
     margin: 0.35em 0.35em 0.1em 0.35em;
-    box-shadow: 0 6px 8px rgba(102,119,136,0.03), 0 1px 2px rgba(102,119,136,0.3);
+    box-shadow: 0 6px 8px rgba(102,119,136,0.03), 0 0px 2px rgba(102,119,136,0.3);
     background-color: white;
     position: relative;
 }
 
-.note-card textarea {
+note-card .controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5em;
+    align-items: center;
+}
+
+note-card textarea {
     flex: 1;
     font-family: Roboto;
     border: 0px;
-    margin-top: 0.5em;
 }
 
-.note-card textarea:focus {
+note-card textarea:focus {
     outline: none;
     background-color: rgb(252, 251, 235);
 }
 
+note-card .dates {
+    color: #d7cfcf;
+    font-size: 0.8em;
+    font-weight: 300;
+}
 
-.note-card .toggle-expanded {
+note-card .toggle-expanded {
     transform: rotate(0deg);
     transition: transform 200ms ease-out;
     cursor: pointer;
@@ -40,12 +143,12 @@ body {
     user-select: none;
 }
 
-.note-card .toggle-expanded.toggled {
+note-card .toggle-expanded.toggled {
     transform: rotate(90deg);
 }
 
-.note-card .toggle-sort {
-    transform: rotate(0deg);
+note-card .toggle-sort {
+    transform: rotate(180deg);
     transition: transform 200ms ease-out;
     cursor: pointer;
     display: inline-block;
@@ -54,45 +157,24 @@ body {
     padding: 0.2em;
 }
 
-.note-card .toggle-sort.toggled {
-    transform: rotate(180deg);
+note-card .toggle-sort.toggled {
+    transform: rotate(0deg);
 }
 
 
+note-editor-graphviz .editor  {
+    display: flex;
+}
 
-/* roboto-regular - latin_latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'),
-       url('/fonts/roboto-v18-latin_latin-ext-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/fonts/roboto-v18-latin_latin-ext-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+note-editor-graphviz .rendering {
+    margin-top: 0.5em;
+    font-style: italic;
 }
-/* roboto-500 - latin_latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'),
-       url('/fonts/roboto-v18-latin_latin-ext-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/fonts/roboto-v18-latin_latin-ext-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+
+note-editor-graphviz svg {
+    margin-top: 0.5em;
 }
-/* roboto-700 - latin_latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Roboto Bold'), local('Roboto-Bold'),
-       url('/fonts/roboto-v18-latin_latin-ext-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/fonts/roboto-v18-latin_latin-ext-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* roboto-900 - latin_latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 900;
-  src: local('Roboto Black'), local('Roboto-Black'),
-       url('/fonts/roboto-v18-latin_latin-ext-900.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/fonts/roboto-v18-latin_latin-ext-900.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+
+note-editor-text .editor-text {
+    display: flex;
 }
