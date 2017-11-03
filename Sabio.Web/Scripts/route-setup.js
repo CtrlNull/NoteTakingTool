@@ -47,6 +47,16 @@
             , url: "/admin/entity/token/"
             , component: "adminTokenCreateController"
         });
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+          // ---- <In Testing > ---- //
+        $stateProvider.state({
+            name: "pasteImage"
+            , url: "/admin/entity/paste"
+            , component: "adminImagePasteController"
+        });
+
+
+
 
         /*
         URLS for cars:

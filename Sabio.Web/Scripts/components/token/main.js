@@ -46,7 +46,7 @@
             //tokenService.getById(data.id)
             //    .then(_success, _error);
         }
-        // =========== Success/Error ============= // 
+        // =========== Success/Error ============= //
         //--|OnSuccess(GetAll)|--//
         function _success(response) {
             vm.items = response.data.items;
