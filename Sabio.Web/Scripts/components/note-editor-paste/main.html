@@ -1,3 +1,8 @@
-<div class='editor-pasteText'>
-    <input ng-paste="count = count + 1" ng-init="count=0" value="Paste text here" />
+<div>
+    <form name="imageForm">
+        <button ngf-select ng-model="picFile" accept="image/*">Select Picture</button>
+        <div ngf-drop ng-model="picFile" ngf-pattern="image/*"></div>
+
+    </form>
 </div>
+<!--- Developer: Ralph_Fonz-->
