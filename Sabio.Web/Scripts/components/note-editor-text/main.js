@@ -7,7 +7,7 @@
             controller: 'EditorTextController',
             bindings: {
                 note: '<',
-                onSave: '&'
+                noteControls: '<'
             }
         });
 

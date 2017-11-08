@@ -4,7 +4,7 @@
         <input type='text' ng-model='$ctrl.note.title'>
     </label>
     <label>
-        <input type='checkbox' ng-model='$ctrl.editMode' ng-blur='$ctrl.onSave()'/>
+        <input type='checkbox' ng-model='$ctrl.editMode' ng-blur='$ctrl.noteControls.save()'/>
         Edit
     </label>
 </div>
@@ -14,7 +14,7 @@
         spellcheck="false"
         ng-model='$ctrl.note.body'
         placeholder='Enter Graphviz description'
-        ng-blur='$ctrl.onSave()'
+        ng-blur='$ctrl.noteControls.save()'
         ></textarea>
 </div>
 

@@ -7,8 +7,7 @@
             controller: 'EditorTagSearchController',
             bindings: {
                 note: '<',
-                onSave: '&',
-                onUpdated: '&'
+                noteControls: '<'
             }
         });
 
@@ -29,8 +28,7 @@
                     notesService
                     .unlinkNotesFromParent(vm.note.id, noteIds) 
                     .then(() => notesService.getNotesWithTag(vm.note.body))
-                    .then(notes => notesService.linkNotesToParent(vm.note.id, notes.map(o => o.id)))
-                    .then(() => vm.onUpdated(), console.error));
+                    .then(notes => notesService.linkNotesToParent(vm.note.id, notes.map(o => o.id))));
         }
     }
 })();

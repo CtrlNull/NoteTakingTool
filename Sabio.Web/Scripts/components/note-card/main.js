@@ -25,9 +25,13 @@
         vm.addChildNote = _addChildNote;
         vm.unlinkThisNote = _unlinkThisNote;
         vm.unlinkChildNote = _unlinkChildNote;
-        vm.saveNote = _saveNote;
         vm.updateTags = _updateTags;
-        vm.onNoteUpdated = _onNoteUpdated;
+
+        // These are the helper functions that are passed to the
+        // specific note-editor instance
+        vm.noteControls = {
+            save: _saveNote
+        };
 
         // Keep an eye on the "expanded" property. Load child notes when expanded.
         $scope.$watch(
@@ -50,14 +54,29 @@
             true
         );
 
-        function _onInit(){
-            getHasChildren();
-        }
 
-        function _onNoteUpdated(){
-            vm.notes = null;
-            getHasChildren();
-            expandChildNotes();
+        function _onInit(){
+            getChildCount();
+
+            $scope.$on(
+                'note:changed:' + vm.note.id,
+                function(e, note){
+                    getChildCount();
+                }
+            );
+
+            $scope.$on(
+                'note:child-changed:' + vm.note.id,
+                function(e, note){
+                    if (vm.expanded){
+                        vm.notes = null;
+                        expandChildNotes();
+                    }
+                    else {
+                        getChildCount();
+                    }
+                }
+            );
         }
 
         function _updateTags(){
@@ -66,7 +85,7 @@
             _saveNote();
         }
 
-        function getHasChildren(){
+        function getChildCount(){
             notesService.getChildCount(vm.note.id)
                 .then(_success, console.error);
 
@@ -84,6 +103,7 @@
 
             function _success(notes){
                 vm.notes = notes;
+                vm.childCount = notes.length;
             }
         }
 
@@ -103,7 +123,7 @@
         }
 
         function _addChildNote(){
-            expandChildNotes()
+            return expandChildNotes()
                 .then(function(){
                     var note = {
                         body: null,
@@ -118,6 +138,7 @@
                         vm.notes.push(note);
                         vm.expanded = true;
                         vm.childCount++;
+                        return note;
                     }
 
                     function _error(err){
