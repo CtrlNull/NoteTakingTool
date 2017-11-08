@@ -116,7 +116,11 @@
                             note.id = newId;
 
                             // let the rest of the program know this note has changed
-                            $rootScope.$broadcast('note:changed:' + note.id, note);
+                            $rootScope.$broadcast('note:changed:' + noteToSave.id);
+
+                            for (var parentId of noteToSave.parents){
+                                $rootScope.$broadcast('note:child-changed:' + parentId);
+                            }
 
                             return newId;
                         }));
@@ -188,7 +192,10 @@
                     _txUnlinkNotesFromParent(
                         db.transaction('notes', 'readwrite'),
                         parentId,
-                        noteIds));
+                        noteIds))
+                .then(() => {
+                    $rootScope.$broadcast('note:child-unlinked:' + parentId);
+                });
 
             return $q(function(resolve, reject){
                 promise.then(resolve, reject);

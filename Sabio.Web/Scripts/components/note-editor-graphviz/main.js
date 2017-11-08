@@ -7,7 +7,7 @@
             controller: 'EditorGraphvizController',
             bindings: {
                 note: '<',
-                onSave: '&'
+                noteControls: '<'
             }
         });
     
