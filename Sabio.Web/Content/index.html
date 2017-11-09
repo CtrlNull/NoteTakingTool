@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <title>BananaPad</title>
-    <link href='index.css' rel='stylesheet'/>
+    <link href='index.css' rel='stylesheet' id='light-theme' />
+    <link href='dark.css' rel='stylesheet' id='dark-theme' disabled />
 </head>
 <body>
     <ui-view id='main-ui-view'></ui-view>
@@ -16,7 +17,7 @@
     <script src='/node_modules/idb/lib/idb.js'></script>
 
     <!--
-    
+
     Main JS file that creates the Angular JS module -->
     <script src='../Scripts/index.js'></script>
     <script src='../Scripts/index-routes.js'></script>

@@ -178,3 +178,8 @@ note-editor-graphviz svg {
 note-editor-text .editor-text {
     display: flex;
 }
+
+tool-bar #toggle-theme {
+    clear: left;
+    float: right;
+}
