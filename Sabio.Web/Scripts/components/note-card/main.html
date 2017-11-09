@@ -23,6 +23,7 @@
             note='$ctrl.note'
             note-controls='$ctrl.noteControls'
             ></note-editor-child-adder-sample>
+        <note-editor-paste ng-switch-when="paste" note="$ctrl.note" note-controls="$ctrl.noteControls"></note-editor-paste>
     </div>
 
     <div class='controls'>
@@ -49,6 +50,7 @@
                     <option value='text'>Text</option>
                     <option value='graphviz'>Graphviz</option>
                     <option value='tag-search'>Tag search</option>
+                    <option value="paste">Import Image</option>
                     <option value='child-adder-sample'>Sample - child adder</option>
                 </select>
             </label>

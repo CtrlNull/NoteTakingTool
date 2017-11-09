@@ -2,7 +2,7 @@
     'use strict';
     // Name *TextPaster*
     angular.module('BananaPad')
-        .component('noteEditorImagePaster', {
+        .component('noteEditorPaste', {
             templateUrl: '/Scripts/components/note-editor-image-paster/main.html',
             controller: 'EditorImagePasterController',
             bindings: {

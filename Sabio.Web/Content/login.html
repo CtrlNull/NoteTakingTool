@@ -2,20 +2,61 @@
 <html>
 <head>
     <title>BananaPad Login</title>
+    <style>
+        .login {
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
-    <script type="text/javascript">
-        var loginData = 'grant_type=password&username=test.test@mail.com&password=test123';
+    <!-- Simple login form -->
+    <div class="login">
+        <label>Login Button</label>
+    </div>
+    <div class="login">
+        <button class="btn btn-block btn-primary" id="btnSubmit">Github</button>
+        <button class="btn btn-block btn-danger" id="btnTestSubmit">Test</button>
+    </div>
+    <!-- 3rd Party Scripts-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
 
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                alert(xmlhttp.responseText);
+    <script type="text/javascript">
+        $("#btnSubmit").on("click", getToken);
+        $("#btnTestSubmit").on("click",getTestToken)
+
+        function getToken(w, h) {
+            console.log("this is Github button firing");
+            var w = 600;
+            var h = 600;
+            var left = (screen.width / 2) - (w / 2);
+            var top = (screen.height / 2) - (h / 2);
+            return window.open("http://github.com/login/oauth/authorize", "Github", 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+            window.addEventListener("DOMContentLoaded", function () {
+                if (gBrowser.currentURI.spec.indexOf("http://github.com/login/oauth/authorize") != -1) {
+                    console.log("data passing")
+                    console.log(data);
+                }
+            });
+
+        };
+
+
+        function getTestToken() {
+            var loginData = 'grant_type=password&username=test.test@mail.com&password=test123';
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                    //alert(xmlhttp.responseText);
+                    console.log(xmlhttp.response);
+                }
             }
-        }
-        xmlhttp.open("POST", "/token", true);
-        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xmlhttp.send(loginData);
+            xmlhttp.open("POST", "/token", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send(loginData);
+        };
     </script>
 </body>
 </html>
