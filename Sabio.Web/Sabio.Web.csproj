@@ -242,6 +242,7 @@
     <Content Include="Content\admin-index.html" />
     <Content Include="Content\login.html" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\dark.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -267,6 +268,8 @@
     <Content Include="Scripts\components\token\tokenPics\github.png" />
     <Content Include="Scripts\components\token\tokenPics\google.png" />
     <Content Include="Scripts\components\token\tokenPics\slack.png" />
+    <Content Include="Scripts\components\admin-edit-markdown\main.html" />
+    <Content Include="Scripts\components\admin-edit-markdown\main.js" />
     <Content Include="Scripts\components\admin-view-cars\main.html" />
     <Content Include="Scripts\components\admin-view-cars\main.js" />
     <Content Include="Scripts\components\note-card\main.html" />
@@ -280,6 +283,7 @@
     <Content Include="Scripts\services\carsService.js" />
     <Content Include="Scripts\services\exampleEntityService.js" />
     <Content Include="Scripts\services\token-service.js" />
+    <Content Include="Scripts\services\markdownService.js" />
     <Content Include="Scripts\services\notes-service.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\angular.js" />
