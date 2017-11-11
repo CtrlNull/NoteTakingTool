@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html ng-app='BananaPad'>
+<head>
+    <meta charset="utf-8" />
+    <title>BananaPad</title>
+    <link href='index.css' rel='stylesheet' id='light-theme' />
+    <link href='dark.css' rel='stylesheet' id='dark-theme' disabled />
+</head>
+<body>
+    <ui-view id='main-ui-view'></ui-view>
+
+    <script src="../Scripts/jquery-3.1.1.js"></script>
+    <script src="../Scripts/angular.js"></script>
+    <script src="../Scripts/angular-ui-router.js"></script>
+    <script src='/node_modules/viz.js/viz-lite.js'></script>
+    <script src='/node_modules/idb/lib/idb.js'></script>
+    <script src='/node_modules/idb/lib/idb.js'></script>
+    <script src='/node_modules/idb/lib/idb.js'></script>
+
+    <script src='https://angular-file-upload.appspot.com/js/ng-file-upload-shim.js'></script>
+    <script src='https://angular-file-upload.appspot.com/js/ng-file-upload.js'></script>
+
+    
+
+    <!--
+
+    Main JS file that creates the Angular JS module -->
+    <script src='../Scripts/index.js'></script>
+    <script src='../Scripts/index-routes.js'></script>
+
+    <script src='../Scripts/services/notes-service.js'></script>
+    <script src='../Scripts/components/notes-display/main.js'></script>
+    <script src='../Scripts/components/note-card/main.js'></script>
+    <script src='../Scripts/components/note-editor-text/main.js'></script>
+    <script src='../Scripts/components/note-editor-graphviz/main.js'></script>
+    <script src='../Scripts/components/note-tree/main.js'></script>
+    <script src='../Scripts/components/note-tree-item/main.js'></script>
+    <script src='../Scripts/components/tool-bar/main.js'></script>
+    <script src='../Scripts/components/note-editor-tag-search/main.js'></script>
+    <script src="../Scripts/components/note-editor-paste/main.js"></script>
+    <script src='../Scripts/components/note-editor-child-adder-sample/main.js'></script>
+</body>
+</html>

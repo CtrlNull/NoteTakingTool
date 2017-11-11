@@ -1,0 +1,9 @@
+<div>
+    <button class='expander' ng-if='$ctrl.hasChildren' ng-click='$ctrl.toggle()'>{{$ctrl.expanded ? '-' : '+'}}</button>
+    <span ui-sref='note({ id: $ctrl.note.id })' class='note-tree-title' ng-class='{selected: $ctrl.isSelected()}'>{{$ctrl.getNoteTitle()}}</span>
+</div>
+<div ng-if='$ctrl.hasChildren && $ctrl.expanded'>
+    <div class='note-tree-children'>
+        <note-tree-item ng-repeat='note in $ctrl.notes' note='note'></note-tree-item>
+    </div>
+</div>

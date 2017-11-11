@@ -1,0 +1,82 @@
+<div class='note-card'>
+    <div ng-if='$ctrl.note.id !== 0' ng-switch='$ctrl.note.type'>
+        <note-editor-text
+            ng-switch-when='text'
+            note='$ctrl.note'
+            note-controls='$ctrl.noteControls'
+            ></note-editor-text>
+
+        <note-editor-graphviz
+            ng-switch-when='graphviz'
+            note='$ctrl.note'
+            note-controls='$ctrl.noteControls'
+            ></note-editor-graphviz>
+
+        <note-editor-tag-search
+            ng-switch-when='tag-search'
+            note='$ctrl.note'
+            note-controls='$ctrl.noteControls'
+            ></note-editor-tag-search>
+
+        <note-editor-child-adder-sample
+            ng-switch-when='child-adder-sample'
+            note='$ctrl.note'
+            note-controls='$ctrl.noteControls'
+            ></note-editor-child-adder-sample>
+        <note-editor-paste ng-switch-when="paste" note="$ctrl.note" note-controls="$ctrl.noteControls"></note-editor-paste>
+    </div>
+
+    <div class='controls'>
+        <div>
+            <span
+                ng-if='$ctrl.note.id !== 0 && $ctrl.childCount > 0'
+                class='toggle-expanded'
+                ng-class='{toggled: $ctrl.expanded}'
+                ng-click='$ctrl.expanded = !$ctrl.expanded'
+                title='Expand child notes'
+                >&#9658;</span>
+
+            <span
+                ng-if='$ctrl.childCount > 1'
+                ng-click='$ctrl.sortDesc = !$ctrl.sortDesc'
+                class='toggle-sort'
+                ng-class='{toggled: $ctrl.sortDesc}'
+                title='Change child-note sort direction'
+                >&#8673;</span>
+
+            <label ng-if='$ctrl.note.id !== 0'>
+                Type:
+                <select ng-model='$ctrl.note.type' ng-change='$ctrl.noteControls.save()'>
+                    <option value='text'>Text</option>
+                    <option value='graphviz'>Graphviz</option>
+                    <option value='tag-search'>Tag search</option>
+                    <option value="paste">Import Image</option>
+                    <option value='child-adder-sample'>Sample - child adder</option>
+                </select>
+            </label>
+
+            <button ng-click='$ctrl.addChildNote()'>+</button>
+            <button ng-if='$ctrl.note.id !== 0' ng-click='$ctrl.unlinkThisNote()'>X</button>
+
+            <a class='note-link' ng-if='$ctrl.note.id !== 0' ui-sref='note({ id: $ctrl.note.id })'>{{$ctrl.note.id}}</a>
+
+            <label ng-if='$ctrl.note.id !== 0'>
+                Tags:
+                <input type='text' ng-model='$ctrl.tagsInput' ng-blur='$ctrl.updateTags()'>
+            </label>
+        </div>
+
+        <span class='dates' ng-if='$ctrl.note.id !== 0'>
+            {{$ctrl.note.dateModified | date:'yyyy-MM-dd h:mm:ss a' }}
+            (created: {{$ctrl.note.dateCreated | date:'yyyy-MM-dd h:mm:ss a' }})
+        </span>
+    </div>
+</div>
+
+<div class='child-notes'>
+    <note-card
+        ng-repeat='note in $ctrl.notes | orderBy:"+":$ctrl.sortDesc'
+        note='note'
+        on-unlink='$ctrl.unlinkChildNote($index, note)'>
+    </note-card>
+</div>

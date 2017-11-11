@@ -47,7 +47,13 @@
             , url: "/admin/entity/token/"
             , component: "adminTokenCreateController"
         });
-
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+          // ---- <In Testing > ---- //
+        $stateProvider.state({
+            name: "login-auth"
+            , url: "/admin/entity/loginGit"
+            , component: "adminLoginGitController"
+        });
         /*
         URLS for cars:
         /admin/entity/cars   (views the table of all cars)
