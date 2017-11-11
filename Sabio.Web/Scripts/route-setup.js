@@ -50,14 +50,10 @@
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
           // ---- <In Testing > ---- //
         $stateProvider.state({
-            name: "pasteImage"
-            , url: "/admin/entity/paste"
-            , component: "adminImagePasteController"
+            name: "login-auth"
+            , url: "/admin/entity/loginGit"
+            , component: "adminLoginGitController"
         });
-
-
-
-
         /*
         URLS for cars:
         /admin/entity/cars   (views the table of all cars)

@@ -283,6 +283,7 @@
     <Content Include="Scripts\route-setup.js" />
     <Content Include="Scripts\services\carsService.js" />
     <Content Include="Scripts\services\exampleEntityService.js" />
+    <Content Include="Scripts\services\loginGitService.js" />
     <Content Include="Scripts\services\token-service.js" />
     <Content Include="Scripts\services\markdownService.js" />
     <Content Include="Scripts\services\notes-service.js" />
