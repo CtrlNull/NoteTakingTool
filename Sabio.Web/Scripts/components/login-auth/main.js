@@ -20,32 +20,31 @@
         vm.btnGoogle = _btnGoogle;
         vm.btnSlack = _btnSlack;
 
-        // Creates call for github authentication
+        //~~~~<btn Github Authentication>
         function _btnGithub() {
             //loginGitService.sendKey();
-
-            console.log("this is Github button firing");
             var w = 600;
             var h = 600;
             var left = (screen.width / 2) - (w / 2);
             var top = (screen.height / 2) - (h / 2);
             return window.open(loginGitService.sendKey(), "Github", 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+        };
 
+        //~~~~<btn Google Authentication>
+        function _btnGoogle() {
+            console.log("this is the Google button firing");
+        };
+
+        //~~~~<btn Slack Authentication>
+        function _btnSlack() {
+            console.log("this is the Slack button firing");
+        }
+        //----====== {Dump Code}======-----//
             //window.addEventListener("DOMContentLoaded", function () {
             //    if (gBrowser.currentURI.spec.indexOf("http://github.com/login/oauth/authorize") != -1) {
             //        console.log("data passing")
             //        console.log(data);
             //    }
             //});
-        };
-        function _btnGoogle() {
-            console.log("this is the Google button firing");
-        };
-        function _btnSlack() {
-            console.log("this is the Slack button firing");
-        }
-
-
-
     }
 })();
