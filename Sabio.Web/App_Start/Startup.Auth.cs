@@ -18,7 +18,7 @@ namespace Sabio.Web
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
-           
+
 
             CookieAuthenticationOptions cookieAuthenticationOptions = new CookieAuthenticationOptions();
             {
@@ -66,16 +66,17 @@ namespace Sabio.Web
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
-        }
+            //    app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //    {
+            //        ClientId = "",
+            //        ClientSecret = ""
+            //    });
+            //}
 
-        /*Sabio: this one method illustrates how one would tell if a given request
-         was made as an Ajax request
-         */
+            /*Sabio: this one method illustrates how one would tell if a given request
+             was made as an Ajax request
+             */
+        }
         private static bool IsAjaxRequest(IOwinRequest request)
         {
             IReadableStringCollection query = request.Query;
