@@ -29,7 +29,7 @@
             if (vm.note){
                 _getChildCount();
             
-                $scope.$on('note:changed:' + vm.note.id, function(e, note){
+                $scope.$on('note:saved:' + vm.note.id, function(e, note){
                     vm.note = angular.copy(note);
                 });
             }

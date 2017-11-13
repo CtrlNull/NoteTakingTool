@@ -24,11 +24,11 @@
         function _addChildNote(){
             var childNote = {
                 type: 'text',
-                body: vm.inputText,
+                body: vm.note.body,
                 parents: [vm.note.id]
             };
 
-            notesService.saveNote(childNote);
+            vm.noteControls.addChildNote(childNote);
         }
     }
 })();

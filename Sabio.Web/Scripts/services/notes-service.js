@@ -11,10 +11,24 @@
         "revision": 1, // incremented every time we save the note
         "type": "text", // could be anything: "text", "markdown", "youtube", "graphviz", etc.
         "body": null,
-        "parents": [] // ids of parent, or 0 if this is a top-level note
+        "parents": [] // ids of parent, or 0 if this is a top-level note.
+                      // DO NOT directly modify this array. Only use functions from inside notesService to add/remove child notes!!
         "dateCreated": auto-populated Date object
         "dateModified": auto-populated Date object
     }
+    */
+
+    /*
+    Angular messages that are broadcast from $rootScope:
+
+    When a note is saved:
+    "note:saved:12345"         data: none
+
+    When a note's child was saved:
+    "note:child-saved:12345"   data: [childId, childId, ...]
+
+    When one or more of a note's children are unlinked:
+    "note:child-unlinked:12345"  data: [childId, childId, ...]
     */
 
     notesService.$inject = ['$q', '$rootScope'];
@@ -55,6 +69,11 @@
             console.log.apply(console, arguments);
         }
 
+        function broadcast(message, data){
+            log('$broadcast ' + message, data);
+            $rootScope.$broadcast(message, data);
+        }
+
         function _getById(id) {
             log('notesService.getById', id);
 
@@ -70,12 +89,8 @@
         }
 
         function _saveNote(note) {
-            log('notesService.saveNote', note.id);
-
-            // validate that the note has either:
-            // * one or more numbers in the "parents" array other than 0
-            // * 0 in the "parents" array
-
+            log('notesService.saveNote id:' + note.id, note);
+        
             if (!note.parents || note.parents.length == 0) {
                 throw new Error("Invalid parents array on note");
             }
@@ -114,12 +129,14 @@
                         .put(noteToSave)
                         .then(newId => {
                             note.id = newId;
+                            noteToSave.id = newId; // mutate original note instance
 
                             // let the rest of the program know this note has changed
-                            $rootScope.$broadcast('note:changed:' + noteToSave.id);
+                           broadcast('note:saved:' + noteToSave.id, noteToSave);
 
+                            // let every parent note know that the child has changed
                             for (var parentId of noteToSave.parents){
-                                $rootScope.$broadcast('note:child-changed:' + parentId);
+                                broadcast('note:child-changed:' + parentId, { childId: noteToSave.id });
                             }
 
                             return newId;
@@ -194,7 +211,7 @@
                         parentId,
                         noteIds))
                 .then(() => {
-                    $rootScope.$broadcast('note:child-unlinked:' + parentId);
+                    broadcast('note:child-unlinked:' + parentId, noteIds);
                 });
 
             return $q(function(resolve, reject){

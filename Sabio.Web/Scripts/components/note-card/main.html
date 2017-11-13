@@ -1,5 +1,5 @@
 <div class='note-card'>
-    <div ng-if='$ctrl.note.id !== 0' ng-switch='$ctrl.note.type'>
+    <div class='editor'  ng-if='$ctrl.note.id !== 0' ng-switch='$ctrl.note.type'>
         <note-editor-text
             ng-switch-when='text'
             note='$ctrl.note'
@@ -28,6 +28,8 @@
 
     <div class='controls'>
         <div>
+            <a class='note-link' ng-if='$ctrl.note.id !== 0' ui-sref='note({ id: $ctrl.note.id })'>{{$ctrl.note.id}}</a>
+
             <span
                 ng-if='$ctrl.note.id !== 0 && $ctrl.childCount > 0'
                 class='toggle-expanded'
@@ -44,7 +46,13 @@
                 title='Change child-note sort direction'
                 >&#8673;</span>
 
-            <label ng-if='$ctrl.note.id !== 0'>
+
+            <button ng-click='$ctrl.addChildNote()'>+</button>
+            <button ng-if='$ctrl.note.id !== 0' ng-click='$ctrl.unlinkThisNote()'>X</button>
+        </div>
+
+        <div ng-if='$ctrl.note.id !== 0'>
+            <label>
                 Type:
                 <select ng-model='$ctrl.note.type' ng-change='$ctrl.noteControls.save()'>
                     <option value='text'>Text</option>
@@ -54,22 +62,17 @@
                     <option value='child-adder-sample'>Sample - child adder</option>
                 </select>
             </label>
-
-            <button ng-click='$ctrl.addChildNote()'>+</button>
-            <button ng-if='$ctrl.note.id !== 0' ng-click='$ctrl.unlinkThisNote()'>X</button>
-
-            <a class='note-link' ng-if='$ctrl.note.id !== 0' ui-sref='note({ id: $ctrl.note.id })'>{{$ctrl.note.id}}</a>
-
-            <label ng-if='$ctrl.note.id !== 0'>
-                Tags:
-                <input type='text' ng-model='$ctrl.tagsInput' ng-blur='$ctrl.updateTags()'>
-            </label>
         </div>
 
-        <span class='dates' ng-if='$ctrl.note.id !== 0'>
-            {{$ctrl.note.dateModified | date:'yyyy-MM-dd h:mm:ss a' }}
-            (created: {{$ctrl.note.dateCreated | date:'yyyy-MM-dd h:mm:ss a' }})
-        </span>
+        <label ng-if='$ctrl.note.id !== 0'>
+            Tags:
+            <input type='text' ng-model='$ctrl.tagsInput' ng-blur='$ctrl.updateTags()'>
+        </label>
+
+        <div class='dates' ng-if='$ctrl.note.id !== 0'>
+            <div>M: {{$ctrl.note.dateModified | date:'yyyy-MM-dd h:mm:ss a' }}</div>
+            <div>C: {{$ctrl.note.dateCreated | date:'yyyy-MM-dd h:mm:ss a' }})</div>
+        </div>
     </div>
 </div>
 
