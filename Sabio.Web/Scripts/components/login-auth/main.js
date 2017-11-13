@@ -8,9 +8,9 @@
     angular.module(APPNAME)
         .controller('adminLoginGitController', adminLoginGitController);
 
-    adminLoginGitController.$inject = ['loginGitService', '$stateParams'];
+    adminLoginGitController.$inject = ['loginGitService', '$stateParams', '$scope'];
 
-    function adminLoginGitController(loginGitService, $stateParams) {
+    function adminLoginGitController(loginGitService, $stateParams, $scope) {
         var vm = this;
         vm.loginGitService = loginGitService;
         vm.items = null;
@@ -27,7 +27,14 @@
             var h = 600;
             var left = (screen.width / 2) - (w / 2);
             var top = (screen.height / 2) - (h / 2);
-            return window.open(loginGitService.sendKey(), "Github", 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+            return window.open('http://github.com/login/oauth/authorize', loginGitService.sendKey(), 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+            window.addEventListener("DOMContentLoaded", function () {
+                if (gBrowser.currentURI.spec.indexOf("http://github.com/login/oauth/authorize") != -1) {
+                    console.log("data passing")
+                    console.log(data);
+                }
+            });
         };
 
         //~~~~<btn Google Authentication>

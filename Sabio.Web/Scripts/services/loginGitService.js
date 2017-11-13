@@ -3,13 +3,13 @@
     angular.module(APPNAME)
         .service('loginGitService', loginGitService);
 
-    loginGitService.$inject = ['$httpProvider'];
+    loginGitService.$inject = ['$http'];
 
-    function loginGitService($httpProvider) {
+    function loginGitService($http) {
         var svc = this;
         //==== Setting $httpProvider defaults ====//
-        $httpProvider.defaults.useXDomain = true;
-        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+        //$httpProvider.defaults.useXDomain = true;
+        //delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
         // hoist //
         svc.sendKey = _sendKey;
@@ -17,13 +17,12 @@
         //------ {Settings} ------ //
         //~~<Create>
         function _sendKey() {
-            return $httpProvider({
+            return $http({
                 method: 'GET'
-                , url: 'http://github.com/login/oauth/authorize'
+                , url: 'http://localhost:3024/Content/admin-index.html#!/admin/entity/loginGit'
                 , data: { client_id: "df80bc5f88b4806c4269", client_secret: "0c79495a0554154bc09f3d95fd92220b35c86c2e" }
-                , header: "application/json"
-                , header: "Access-Control-Allow-Origin"
-                , header: "Access-Control-Allow-Headers"
+                , headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                , headers: { "Access-Control-Allow-Origin": "http://github.com/login/oauth/authorize" }
             })
         }
     }
