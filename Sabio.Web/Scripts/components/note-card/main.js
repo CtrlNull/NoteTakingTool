@@ -30,7 +30,8 @@
         // These are the helper functions that are passed to the
         // specific note-editor instance
         vm.noteControls = {
-            save: _saveNote
+            save: _saveNote,
+            addChildNote: _addChildNote
         };
 
         // Keep an eye on the "expanded" property. Load child notes when expanded.
@@ -59,22 +60,9 @@
             getChildCount();
 
             $scope.$on(
-                'note:changed:' + vm.note.id,
+                'note:saved:' + vm.note.id,
                 function(e, note){
                     getChildCount();
-                }
-            );
-
-            $scope.$on(
-                'note:child-changed:' + vm.note.id,
-                function(e, note){
-                    if (vm.expanded){
-                        vm.notes = null;
-                        expandChildNotes();
-                    }
-                    else {
-                        getChildCount();
-                    }
                 }
             );
         }
@@ -122,15 +110,17 @@
             }
         }
 
-        function _addChildNote(){
+        function _addChildNote(note){
+            if (!note){
+                note = {
+                    body: null,
+                    type: 'text',
+                    parents: [vm.note.id]
+                };
+            }
+
             return expandChildNotes()
                 .then(function(){
-                    var note = {
-                        body: null,
-                        type: 'text',
-                        parents: [vm.note.id]
-                    };
-
                     notesService.saveNote(note)
                         .then(_success, _error);
 

@@ -1,4 +1,4 @@
 <div class='editor-child-adder-sample'>
-    <input type='text' ng-model='$ctrl.inputText'>
+    <input type='text' ng-model='$ctrl.note.body' ng-blur='$ctrl.noteControls.save()'>
     <button ng-click='$ctrl.addChildNote()'>Add</button>
 </div>
