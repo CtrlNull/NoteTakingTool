@@ -1,8 +1,31 @@
-<div>
-    <form name="imageForm">
-        <button ngf-select ng-model="picFile" accept="image/*">Select Picture</button>
-        <div ngf-drop ng-model="picFile" ngf-pattern="image/*"></div>
 
-    </form>
+<div>
+    <label>
+        Title:
+        <input type='text' ng-model='$ctrl.note.title'>
+    </label>
+    <label>
+        <input type='checkbox' ng-model='$ctrl.editMode' ng-blur='$ctrl.noteControls.save()' />
+        Edit
+    </label>
+    <div>
+        <form name="imageForm">
+            <button ngf-select ng-model="picFile" accept="image/*">Select Picture</button>
+            <div ngf-drop ng-model="picFile" ngf-pattern="image/*"></div>
+            <div>
+                <img ng-src="{{picFile}}" />
+            </div>
+        </form>
+    </div>
 </div>
+<div ng-if='$ctrl.editMode' class='editor'>
+    <textarea spellcheck="false"
+              ng-model='$ctrl.note.body'
+              placeholder='Enter Paste description'
+              ng-blur='$ctrl.noteControls.save()'></textarea>
+</div>
+<div ng-if='!$ctrl.editMode' ng-bind-html="$ctrl.svg"></div>
+<div class='rendering' ng-if='$ctrl.rendering'>Rendering...</div>
+<div class='error'>{{$ctrl.errorMessage}}</div>
+
 <!--- Developer: Ralph_Fonz-->

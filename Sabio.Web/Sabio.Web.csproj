@@ -281,9 +281,13 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\index-routes.js" />
     <Content Include="Scripts\route-setup.js" />
+    <Content Include="Scripts\angular-file-upload-shim.js" />
+    <Content Include="Scripts\angular-file-upload.js" />
     <Content Include="Scripts\services\carsService.js" />
     <Content Include="Scripts\services\exampleEntityService.js" />
     <Content Include="Scripts\services\loginGitService.js" />
+    <Content Include="Scripts\ng-file-upload-shim.js" />
+    <Content Include="Scripts\ng-file-upload.js" />
     <Content Include="Scripts\services\token-service.js" />
     <Content Include="Scripts\services\markdownService.js" />
     <Content Include="Scripts\services\notes-service.js" />
