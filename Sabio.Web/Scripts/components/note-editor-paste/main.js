@@ -14,27 +14,83 @@
     angular.module('BananaPad')
         .controller('EditorImagePasterController', EditorImagePasterController);
 
-    EditorImagePasterController.$inject = ['$scope', 'Upload', '$timeout'];
-
-    function EditorImagePasterController($scope, Upload, $timeout) {
+    EditorImagePasterController.$inject = ['$scope', 'fileReader', '$timeout'];
+    
+    function EditorImagePasterController($scope, fileReader, $timeout) {
         var vm = this;
-        $scope.uploadPic = function (file) {
-            file.upload = Upload.upload({
-                url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
-                data: { username: $scope.username, file: file },
-            });
+        $scope.imageSrc = "";
 
-            file.upload.then(function (response) {
-                $timeout(function () {
-                    file.result = response.data;
+        $scope.$on("fileProgress", function (e, progress) {
+            $scope.progress = progress.loaded / progress.total;
+        });
+
+        return {
+            scope: {
+                ngModel: '='
+            },
+            link: function ($scope, el) {
+                function getFile(file) {
+                    fileReader.readAsDataUrl(file, $scope)
+                        .then(function (result) {
+                            $timeout(function () {
+                                $scope.ngModel = result;
+                            });
+                        });
+                }
+
+                el.bind("change", function (e) {
+                    var file = (e.srcElement || e.target).files[0];
+                    getFile(file);
                 });
-            }, function (response) {
-                if (response.status > 0)
-                    $scope.errorMsg = response.status + ': ' + response.data;
-            }, function (evt) {
-                // Math.min is to fix IE which reports 200% sometimes
-                file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-            });
-        }
+            }
+        };
+
+    app.factory("fileReader", function ($q, $log) {
+        var onLoad = function (reader, deferred, scope) {
+            return function () {
+                scope.$apply(function () {
+                    deferred.resolve(reader.result);
+                });
+            };
+        };
+
+        var onError = function (reader, deferred, scope) {
+            return function () {
+                scope.$apply(function () {
+                    deferred.reject(reader.result);
+                });
+            };
+        };
+
+        var onProgress = function (reader, scope) {
+            return function (event) {
+                scope.$broadcast("fileProgress", {
+                    total: event.total,
+                    loaded: event.loaded
+                });
+            };
+        };
+
+        var getReader = function (deferred, scope) {
+            var reader = new FileReader();
+            reader.onload = onLoad(reader, deferred, scope);
+            reader.onerror = onError(reader, deferred, scope);
+            reader.onprogress = onProgress(reader, scope);
+            return reader;
+        };
+
+        var readAsDataURL = function (file, scope) {
+            var deferred = $q.defer();
+
+            var reader = getReader(deferred, scope);
+            reader.readAsDataURL(file);
+
+            return deferred.promise;
+        };
+
+        return {
+            readAsDataUrl: readAsDataURL
+        };
+    });
     }
 })();

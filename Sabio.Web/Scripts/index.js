@@ -2,6 +2,6 @@
     'use strict';
 
     window.APPNAME = 'BananaPad';
-    angular.module(APPNAME, ['ui.router', 'ngFileUpload']);
+    angular.module(APPNAME, ['ui.router']);
 
 })();
