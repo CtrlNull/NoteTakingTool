@@ -10,10 +10,10 @@
     </label>
     <div>
         <form name="imageForm">
-            <button ngf-select ng-model="picFile" accept="image/*">Select Picture</button>
-            <div ngf-drop ng-model="picFile" ngf-pattern="image/*"></div>
+            <button ngf-select ng-model="$ctrl.picFile" accept="image/*" ngf-pattern="'image/*'">Select Picture</button>
+            <div ngf-drop ng-model="$ctrl.picFile" ngf-pattern="image/*"></div>
             <div>
-                <img ng-src="{{picFile}}" ngf-pattern="image/*" />
+                <img ng-src="{{$ctrl.}}"/>
             </div>
         </form>
     </div>
