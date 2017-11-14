@@ -13,7 +13,7 @@
             <button ngf-select ng-model="picFile" accept="image/*">Select Picture</button>
             <div ngf-drop ng-model="picFile" ngf-pattern="image/*"></div>
             <div>
-                <img ng-src="{{picFile}}" />
+                <img ng-src="{{picFile}}" ngf-pattern="image/*" />
             </div>
         </form>
     </div>
