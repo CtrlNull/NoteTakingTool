@@ -10,6 +10,7 @@
     </label>
     <div>
         <form>
+            <button class="btn btn-block btn-danger" ng-click="$ctrl.btnSave()">Save</button>
             <input type="file" ng-file-select="$ctrl.onFileSelect($files)" ng-model="$ctrl.imageSrc">
             <!--  <input type="file" ng-file-select="onFileSelect($files)" multiple> -->
         </form>
