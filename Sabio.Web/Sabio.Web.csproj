@@ -262,6 +262,7 @@
     <Content Include="Scripts\components\admin-edit-example\main.js" />
     <Content Include="Scripts\components\login-auth\githubLogin.html" />
     <Content Include="Scripts\components\login-auth\main.js" />
+    <Content Include="Scripts\components\note-editor-paste\css.css" />
     <Content Include="Scripts\components\token\edit.js" />
     <Content Include="Scripts\components\token\main.html" />
     <Content Include="Scripts\components\token\main.js" />

@@ -18,21 +18,22 @@
 
     function EditorImagePasterController($scope, Upload, $timeout) {
         var vm = this;
-        $scope.Upload = function (dataUrl, name) {
-            Upload.upload({
-                url: 'upload/url',
-                data: {
-                    file: Upload.dataUrltoBlob(dataUrl, name)
-                },
-            }).then(function (response) {
+        $scope.uploadPic = function (file) {
+            file.upload = Upload.upload({
+                url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+                data: { username: $scope.username, file: file },
+            });
+
+            file.upload.then(function (response) {
                 $timeout(function () {
-                    $scope.result = response.data;
-                    vm.imagePreview = response.data;
+                    file.result = response.data;
                 });
             }, function (response) {
-                if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
+                if (response.status > 0)
+                    $scope.errorMsg = response.status + ': ' + response.data;
             }, function (evt) {
-                $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+                // Math.min is to fix IE which reports 200% sometimes
+                file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
         }
     }
