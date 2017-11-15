@@ -228,6 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="Content\fonts.css" />
     <Content Include="Content\index.css" />
     <Content Include="Content\index.html" />
     <Content Include="Content\admin-index.css" />
@@ -243,51 +244,50 @@
     <Content Include="Content\dark.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Global.asax" />
     <Content Include="gulpfile.js" />
     <Content Include="package.json" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Scripts\components\admin-edit-car\main.html" />
-    <Content Include="Scripts\components\admin-edit-car\main.js" />
-    <Content Include="Scripts\components\admin-edit-example\main.html" />
-    <Content Include="Scripts\components\admin-edit-example\main.js" />
-    <Content Include="Scripts\components\admin-edit-markdown\main.html" />
-    <Content Include="Scripts\components\admin-edit-markdown\main.js" />
-    <Content Include="Scripts\components\admin-view-cars\main.html" />
-    <Content Include="Scripts\components\admin-view-cars\main.js" />
     <Content Include="Scripts\components\note-card\main.html" />
     <Content Include="Scripts\components\note-card\main.js" />
+    <Content Include="Scripts\components\note-editor-child-adder-sample\main.html" />
+    <Content Include="Scripts\components\note-editor-child-adder-sample\main.js" />
+    <Content Include="Scripts\components\note-editor-graphviz\main.html" />
+    <Content Include="Scripts\components\note-editor-graphviz\main.js" />
+    <Content Include="Scripts\components\note-editor-tag-search\main.html" />
+    <Content Include="Scripts\components\note-editor-tag-search\main.js" />
+    <Content Include="Scripts\components\note-editor-text\main.html" />
+    <Content Include="Scripts\components\note-editor-text\main.js" />
+    <Content Include="Scripts\components\note-tree-item\main.html" />
+    <Content Include="Scripts\components\note-tree-item\main.js" />
+    <Content Include="Scripts\components\note-tree\main.html" />
+    <Content Include="Scripts\components\note-tree\main.js" />
     <Content Include="Scripts\components\notes-display\main.html" />
     <Content Include="Scripts\components\notes-display\main.js" />
+    <Content Include="Scripts\components\tool-bar\main.html" />
+    <Content Include="Scripts\components\tool-bar\main.js" />
+    <Content Include="Scripts\dest\public\app.public.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\index-routes.js" />
     <Content Include="Scripts\route-setup.js" />
-    <Content Include="Scripts\services\carsService.js" />
-    <Content Include="Scripts\services\exampleEntityService.js" />
-    <Content Include="Scripts\services\markdownService.js" />
-    <Content Include="Scripts\services\notes-service.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-mocks.js" />
-    <Content Include="Scripts\angular-route.js" />
-    <Content Include="Scripts\angular-route.min.js" />
-    <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\angular-ui-router.js" />
-    <Content Include="Scripts\angular-ui-router.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -326,7 +326,20 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <None Include="Project_Readme.html" />
+    <Content Include="Content\fonts\roboto-v18-latin_latin-ext-300.woff" />
+    <Content Include="Content\fonts\roboto-v18-latin_latin-ext-300.woff2" />
+    <Content Include="Content\fonts\roboto-v18-latin_latin-ext-300italic.woff" />
+    <Content Include="Content\fonts\roboto-v18-latin_latin-ext-300italic.woff2" />
+    <Content Include="Content\fonts\roboto-v18-latin_latin-ext-500.woff" />
+    <Content Include="Content\fonts\roboto-v18-latin_latin-ext-500.woff2" />
+    <Content Include="Content\fonts\roboto-v18-latin_latin-ext-700.woff" />
+    <Content Include="Content\fonts\roboto-v18-latin_latin-ext-700.woff2" />
+    <Content Include="Content\fonts\roboto-v18-latin_latin-ext-italic.woff" />
+    <Content Include="Content\fonts\roboto-v18-latin_latin-ext-italic.woff2" />
+    <Content Include="Content\fonts\roboto-v18-latin_latin-ext-regular.woff" />
+    <Content Include="Content\fonts\roboto-v18-latin_latin-ext-regular.woff2" />
+    <None Include="Properties\PublishProfiles\BananaPad - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\BananaPad - Web Deploy.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
   </ItemGroup>

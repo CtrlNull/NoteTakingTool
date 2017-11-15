@@ -6,6 +6,7 @@
     "gulp-config": "0.3.0",
     "gulp-cssmin": "0.2.0",
     "gulp-less": "3.0.3",
+    "gulp-ng-templates": "0.0.10",
     "gulp-rename": "1.2.2",
     "gulp-sourcemaps": "2.6.0",
     "gulp-uglify": "3.0.0",
