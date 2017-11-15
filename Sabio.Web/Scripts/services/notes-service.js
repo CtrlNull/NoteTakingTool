@@ -227,7 +227,7 @@
         function _getChildNotes(parentId) {
             log('notesService.getChildNotes', parentId);
 
-            var promise =
+            const promise =
                 dbPromise.then(db =>
                     db.transaction('notes')
                         .objectStore('notes')
@@ -287,7 +287,7 @@
                 return $q.resolve();
             }
 
-            var promise =
+            const promise =
                 dbPromise.then(db =>
                     tx_UnlinkNotesFromParent(
                         db.transaction('notes', 'readwrite'),
@@ -351,7 +351,7 @@
                 return $q.resolve();
             }
 
-            var promise =
+            const promise =
                 dbPromise.then(db => {
                     const tx = db.transaction('notes', 'readwrite');
 
