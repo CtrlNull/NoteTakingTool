@@ -29,7 +29,7 @@
                 window.alert("Your browser doesnt support latest stable version of indexedDB");
             };
             //~~~[Check indexed db version]
-            var dbPromise = idb.open('user-data', 2, function (upgraadeDb) {
+            var dbPromise = idb.open('mydb.db', 2, function (upgraadeDb) {
                 switch (upgradeDb.oldVersion) {
                     case 0:
                         upgradeDb.createObjectStore('imageId');
@@ -56,18 +56,16 @@
                 objectStore.createIndex('imageSub', 'imageSub', { unique: false }); // Subject
             };
             //~~~[on click btnSave Save Record]
-            function _btnSave() {
-                console.log("btnSave");
+            function _btnSave(imageSrc) {
                 var transaction = db.transaction(['imageID'], 'readwrite');
                 var objectStore = transaction.objectStore('imageID');
-
-                var randomData = { imageName: "Dev", stdSub: Math.random() };
-                var request = objectStore.add(randomData);
-                request.onsuccess = function (event) {
-                    console.log(event);
+                var request = objectStore;
+                request.onsuccess = function (imageSrc) { // checkes if successfull
+                    console.log("Success");
                 }
+                console.log(imageSrc);
+                
             }
-
         });
         //================ {Paste Image Directive} ======================//
         app.directive("ngFileSelect", function (fileReader, $timeout) {
