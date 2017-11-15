@@ -1,5 +1,5 @@
 <div class='note-card'>
-    <div class='editor'  ng-if='$ctrl.note.id !== 0' ng-switch='$ctrl.note.type'>
+    <div class='editor' ng-if='$ctrl.note.id !== "root"' ng-switch='$ctrl.note.type'>
         <note-editor-text
             ng-switch-when='text'
             note='$ctrl.note'
@@ -28,10 +28,10 @@
 
     <div class='controls'>
         <div>
-            <a class='note-link' ng-if='$ctrl.note.id !== 0' ui-sref='note({ id: $ctrl.note.id })'>{{$ctrl.note.id}}</a>
+            <a class='note-link' ng-if='$ctrl.note.id !== "root"' ui-sref='note({ id: $ctrl.note.id })'>{{$ctrl.note.id}}</a>
 
             <span
-                ng-if='$ctrl.note.id !== 0 && $ctrl.childCount > 0'
+                ng-if='$ctrl.note.id !== "root" && $ctrl.childCount > 0'
                 class='toggle-expanded'
                 ng-class='{toggled: $ctrl.expanded}'
                 ng-click='$ctrl.expanded = !$ctrl.expanded'
@@ -48,10 +48,10 @@
 
 
             <button ng-click='$ctrl.addChildNote()'>+</button>
-            <button ng-if='$ctrl.note.id !== 0' ng-click='$ctrl.unlinkThisNote()'>X</button>
+            <button ng-if='$ctrl.note.id !== "root"' ng-click='$ctrl.unlinkThisNote()'>X</button>
         </div>
 
-        <div ng-if='$ctrl.note.id !== 0'>
+        <div ng-if='$ctrl.note.id !== "root"'>
             <label>
                 Type:
                 <select ng-model='$ctrl.note.type' ng-change='$ctrl.noteControls.save()'>
@@ -64,12 +64,12 @@
             </label>
         </div>
 
-        <label ng-if='$ctrl.note.id !== 0'>
+        <label ng-if='$ctrl.note.id !== "root"'>
             Tags:
             <input type='text' ng-model='$ctrl.tagsInput' ng-blur='$ctrl.updateTags()'>
         </label>
 
-        <div class='dates' ng-if='$ctrl.note.id !== 0'>
+        <div class='dates' ng-if='$ctrl.note.id !== "root"'>
             <div>M: {{$ctrl.note.dateModified | date:'yyyy-MM-dd h:mm:ss a' }}</div>
             <div>C: {{$ctrl.note.dateCreated | date:'yyyy-MM-dd h:mm:ss a' }})</div>
         </div>

@@ -8,9 +8,9 @@ namespace Sabio.Web.Controllers.Api
     public class GuidController : ApiController
     {
         [HttpGet]
-        public Guid GetNewGuid()
+        public string GetNewGuid()
         {
-            return Guid.NewGuid();
+            return Guid.NewGuid().ToString("N");
         }
     }
 }
