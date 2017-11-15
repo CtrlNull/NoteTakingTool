@@ -61,9 +61,12 @@
 
             $scope.$on(
                 'note:saved:' + vm.note.id,
-                function(e, note){
-                    getChildCount();
-                }
+                getChildCount
+            );
+
+            $scope.$on(
+                'note:child-unlinked:' + vm.note.id,
+                getChildCount
             );
         }
 
