@@ -19,36 +19,47 @@
                 $scope.progress = progress.loaded / progress.total;
             });
             var vm = this;
-            vm.btnSave = _btnSave;
+            vm.btnSave = _btnSave; // places btn to call
 
-            // IndexDB
-            var request = window.indexedDB.open('mydb.db', 1);
+            //======== {IndexDB} ======== //
+            var request = window.indexedDB.open('mydb.db', 2); // instantiate Indexed DB
             var db;
+            //~~~[Checks if user is using an unsupported browser]
             if (!window.indexedDB) {
                 window.alert("Your browser doesnt support latest stable version of indexedDB");
-            }
-            // Already exists
+            };
+            //~~~[Check indexed db version]
+            var dbPromise = idb.open('user-data', 2, function (upgraadeDb) {
+                switch (upgradeDb.oldVersion) {
+                    case 0:
+                        upgradeDb.createObjectStore('imageId');
+                    case 1:
+                        upgradeDb.createObjectStore('imageId', { keyPath: 'imageID' });
+                }
+            });
+            //~~~~[Already exists]
             request.onsuccess = function (event) {
                 db = event.target.result;
                 console.log("in the data base");
             };
-            // if existing
+            //~~~~[If existing]
             request.onerror = function (event) {
                 console.log("error with indexedDB");
             };
-            // newly created db
+            //~~~[Create New DB]
             request.onupgradeneeded = function (event) {
                 console.log("inside on upgrade");
                 db = event.target.result; // Gives read acces to db
-                var objectStore = db.createObjectStore("imageTbl", { keyPath: "imageTbl", autoIncrement:true }); // Adds new Field
+                var objectStore = db.createObjectStore("imageID", { keyPath: "imageID", autoIncrement:true }); // Adds new Field
                 // Create Table
                 objectStore.createIndex('imageName', 'imageName', { unique: false }); // Defines field and gives indexing capability
                 objectStore.createIndex('imageSub', 'imageSub', { unique: false }); // Subject
             };
+            //~~~[on click btnSave Save Record]
             function _btnSave() {
                 console.log("btnSave");
-                var transaction = db.transaction(['imageTbl'], 'readwrite');
-                var objectStore = transaction.objectStore('imageTbl');
+                var transaction = db.transaction(['imageID'], 'readwrite');
+                var objectStore = transaction.objectStore('imageID');
 
                 var randomData = { imageName: "Dev", stdSub: Math.random() };
                 var request = objectStore.add(randomData);
@@ -58,7 +69,7 @@
             }
 
         });
-
+        //================ {Paste Image Directive} ======================//
         app.directive("ngFileSelect", function (fileReader, $timeout) {
             return {
                 scope: {
@@ -73,7 +84,6 @@
                                 });
                             });
                     }
-
                     el.bind("change", function (e) {
                         var file = (e.srcElement || e.target).files[0];
                         getFile(file);
@@ -81,7 +91,7 @@
                 }
             };
         });
-
+        //====================== {File Reader Factory}===================//
         app.factory("fileReader", function ($q, $log) {
             var onLoad = function (reader, deferred, scope) {
                 return function () {
@@ -90,7 +100,7 @@
                     });
                 };
             };
-
+            //~~~[on-Error]
             var onError = function (reader, deferred, scope) {
                 return function () {
                     scope.$apply(function () {
@@ -98,7 +108,7 @@
                     });
                 };
             };
-
+            //~~~[Prograess]
             var onProgress = function (reader, scope) {
                 return function (event) {
                     scope.$broadcast("fileProgress", {
@@ -107,7 +117,7 @@
                     });
                 };
             };
-
+            //~~~[Get Reader]
             var getReader = function (deferred, scope) {
                 var reader = new FileReader();
                 reader.onload = onLoad(reader, deferred, scope);
@@ -115,16 +125,14 @@
                 reader.onprogress = onProgress(reader, scope);
                 return reader;
             };
-
+            //~~~[Read URL]
             var readAsDataURL = function (file, scope) {
                 var deferred = $q.defer();
-
                 var reader = getReader(deferred, scope);
                 reader.readAsDataURL(file);
-
                 return deferred.promise;
             };
-
+            //~~~<Return Stantement>
             return {
                 readAsDataUrl: readAsDataURL
             };
