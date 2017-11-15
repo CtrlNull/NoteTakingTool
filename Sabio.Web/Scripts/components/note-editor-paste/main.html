@@ -13,7 +13,13 @@
             <button class="btn btn-block btn-danger" ng-click="$ctrl.btnSave($ctrl.imageSrc)">Save</button>
             <input type="file" ng-file-select="$ctrl.onFileSelect($imageSrc)" ng-model="$ctrl.imageSrc">
         </form>
-        <img ng-src="{{$ctrl.imageSrc}}" />
+        <div>
+            <img ng-src="{{$ctrl.imageSrc}}" />
+        </div>
+        <div>
+           <!--<img data-ng-src="{{image.imageSrc}}" />-->
+
+        </div>
     </div>
 </div>
 

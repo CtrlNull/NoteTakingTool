@@ -56,16 +56,17 @@
                 objectStore.createIndex('imageSub', 'imageSub', { unique: false }); // Subject
             };
             //~~~[on click btnSave Save Record]
-            function _btnSave(imageSrc) {
-                var transaction = db.transaction(['imageID'], 'readwrite');
-                var objectStore = transaction.objectStore('imageID');
-                var request = objectStore;
-                request.onsuccess = function (imageSrc) { // checkes if successfull
-                    console.log("Success");
+            function _btnSave(onFileSelect) {
+                var data = onFileSelect;
+                console.log(data);
+
+                //var transaction = db.transaction(['imageID'], 'readwrite');
+                //var objectStore = transaction.objectStore('imageID');
+                //objectStore.onsuccess = function (imageSrc) { // checkes if successfull
+                //    console.log("Success");
+                //}
+                //console.log(imageSrc);
                 }
-                console.log(imageSrc);
-                
-            }
         });
         //================ {Paste Image Directive} ======================//
         app.directive("ngFileSelect", function (fileReader, $timeout) {
