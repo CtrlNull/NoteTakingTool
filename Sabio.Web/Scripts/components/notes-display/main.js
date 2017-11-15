@@ -26,7 +26,7 @@
         }
         else {
             vm.rootNote = {
-                id: 0
+                id: "root"
             };
         }
     }

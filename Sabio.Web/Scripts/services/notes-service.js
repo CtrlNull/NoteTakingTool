@@ -7,11 +7,11 @@
     /*
     A "note" looks like this:
     {
-        "id": 1, // auto-generated, starts at 1,
+        "id": "faca6b71720a47cbbc0c471ab7dfb84d-48", // guid + local ID
         "revision": 1, // incremented every time we save the note
         "type": "text", // could be anything: "text", "markdown", "youtube", "graphviz", etc.
         "body": null,
-        "parents": [] // ids of parent, or 0 if this is a top-level note.
+        "parents": [] // ids of parent, or ["root"] if this is a top-level note.
                       // DO NOT directly modify this array. Only use functions from inside notesService to add/remove child notes!!
         "dateCreated": auto-populated Date object
         "dateModified": auto-populated Date object
@@ -31,9 +31,9 @@
     "note:child-unlinked:12345"  data: [childId, childId, ...]
     */
 
-    notesService.$inject = ['$q', '$rootScope'];
+    notesService.$inject = ['$q', '$rootScope', '$http'];
 
-    function notesService($q, $rootScope) {
+    function notesService($q, $rootScope, $http) {
         var svc = this;
 
         svc.getById = _getById;
@@ -54,7 +54,7 @@
             // This is the "database migration" portion:
             switch (upgradeDb.oldVersion) {
                 case 0:
-                    var store = upgradeDb.createObjectStore('notes', { keyPath: 'id', unique: true, autoIncrement: true });
+                    var store = upgradeDb.createObjectStore('notes', { keyPath: 'id', unique: true });
                     store.createIndex('parents', 'parents', { unique: false, multiEntry: true });
                 case 1:
                     upgradeDb.transaction.objectStore('notes')
@@ -64,6 +64,29 @@
                         .createIndex('tags', 'tags', { unique: false, multiEntry: true });
             }
         });
+
+        var guidPromise = new Promise(function(resolve, reject){
+            var guid = localStorage.guid;
+            if (guid){
+                resolve(guid);
+            }
+            else {
+                fetch('/api/guid')
+                    .then(response => response.json())
+                    .then(function(guid){
+                        localStorage.guid = guid;
+                        resolve(guid);
+                    }, reject);
+            }
+        });
+
+        function claimNextNoteId(){
+            return guidPromise.then(function(guid){
+                var localId = (parseInt(localStorage.localId) || 0) + 1;
+                localStorage.localId = localId;
+                return guid + "-" + localId;
+            });
+        }
 
         function log(){
             console.log.apply(console, arguments);
@@ -123,24 +146,37 @@
             delete noteToSave.$$hashkey; // todo: remove angular stuff recursively
 
             var promise =
-                dbPromise.then(db =>
-                    db.transaction('notes', 'readwrite')
+                new Promise(function(resolve, reject){
+                    if (!noteToSave.id){
+                        claimNextNoteId()
+                        .then(function(noteId){
+                            noteToSave.id = noteId;
+                            note.id = noteId; // yuck: mutate original note instance
+                            resolve();
+                        }, reject);
+                    }
+                    else {
+                        resolve();
+                    }
+                })
+                .then(() =>
+                    dbPromise.then(db => {
+                        return db.transaction('notes', 'readwrite')
                         .objectStore('notes')
                         .put(noteToSave)
-                        .then(newId => {
-                            note.id = newId;
-                            noteToSave.id = newId; // mutate original note instance
-
+                        .then(() => {
                             // let the rest of the program know this note has changed
-                           broadcast('note:saved:' + noteToSave.id, noteToSave);
+                            broadcast('note:saved:' + noteToSave.id, noteToSave);
 
                             // let every parent note know that the child has changed
                             for (var parentId of noteToSave.parents){
                                 broadcast('note:child-changed:' + parentId, { childId: noteToSave.id });
                             }
 
-                            return newId;
-                        }));
+                            return noteToSave.id;
+                        });
+                    })
+                );
 
             return $q(function(resolve, reject){
                 promise.then(resolve, reject);

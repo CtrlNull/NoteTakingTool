@@ -19,7 +19,7 @@
 
         $stateProvider.state({
             name: 'note',
-            url: '/notes/{id:int}',
+            url: '/notes/{id}',
             component: 'notesDisplay'
         });
     }
