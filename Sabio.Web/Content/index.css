@@ -168,8 +168,13 @@ note-card .toggle-sort.toggled {
 }
 
 
-note-editor-graphviz .editor  {
+.editor  {
     display: flex;
+}
+
+.editor > * {
+    display: flex;
+    flex: 1;
 }
 
 note-editor-graphviz .rendering {
@@ -183,6 +188,7 @@ note-editor-graphviz svg {
 
 note-editor-text .editor-text {
     display: flex;
+    flex: 1;
 }
 
 tool-bar #toggle-theme {

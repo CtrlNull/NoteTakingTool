@@ -62,16 +62,11 @@
                     <option value='child-adder-sample'>Sample - child adder</option>
                 </select>
             </label>
-        </div>
 
-        <label ng-if='$ctrl.note.id !== "root"'>
-            Tags:
-            <input type='text' ng-model='$ctrl.tagsInput' ng-blur='$ctrl.updateTags()'>
-        </label>
-
-        <div class='dates' ng-if='$ctrl.note.id !== "root"'>
-            <div>M: {{$ctrl.note.dateModified | date:'yyyy-MM-dd h:mm:ss a' }}</div>
-            <div>C: {{$ctrl.note.dateCreated | date:'yyyy-MM-dd h:mm:ss a' }})</div>
+            <label ng-if='$ctrl.note.id !== "root"'>
+                Tags:
+                <input type='text' ng-model='$ctrl.tagsInput' ng-blur='$ctrl.updateTags()'>
+            </label>
         </div>
     </div>
 </div>

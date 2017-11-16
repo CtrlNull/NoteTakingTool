@@ -1,14 +1,15 @@
 ﻿<!DOCTYPE html>
-<html ng-app='BananaPad'>
+<html ng-app='BananaPad' ng-strict-di>
 <head>
     <meta charset="utf-8" />
     <title>BananaPad</title>
-    <link href='index.css' rel='stylesheet' id='light-theme' />
-    <link href='dark.css' rel='stylesheet' id='dark-theme' disabled />
+    <link href='/Content/index.css' rel='stylesheet' id='light-theme' />
+    <link href='/Content/dark.css' rel='stylesheet' id='dark-theme' disabled />
 </head>
 <body>
     <ui-view id='main-ui-view'></ui-view>
 
+<<<<<<< HEAD
     <script src="../Scripts/jquery-3.1.1.js"></script>
     <script src="../Scripts/angular.js"></script>
     <script src="../Scripts/angular-ui-router.js"></script>
@@ -38,5 +39,7 @@
     <script src='../Scripts/components/note-editor-tag-search/main.js'></script>
     <script src="../Scripts/components/note-editor-paste/main.js"></script>
     <script src='../Scripts/components/note-editor-child-adder-sample/main.js'></script>
+    <script src='/Scripts/dest/public/app.public.js'></script>
+
 </body>
 </html>
