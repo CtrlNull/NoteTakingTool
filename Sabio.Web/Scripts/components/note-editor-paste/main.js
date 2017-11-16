@@ -10,17 +10,16 @@
                 onSave: '&'
             }
         });
-
+        //============================== {[ Controller ]} ===================================//
         var app = angular.module('BananaPad')
-        app.controller('EditorImagePasterController', function ($scope, fileReader) {
+        app.controller('EditorImagePasterController', function ($scope, fileReader, $window) {
+            var vm = this;
             $scope.imageSrc = "";
-
+            vm.btnSave = _btnSave; // places btn to call
+            //======= {file Progress}======//
             $scope.$on("fileProgress", function (e, progress) {
                 $scope.progress = progress.loaded / progress.total;
             });
-            var vm = this;
-            vm.btnSave = _btnSave; // places btn to call
-
             //======== {IndexDB} ======== //
             var request = window.indexedDB.open('mydb.db', 2); // instantiate Indexed DB
             var db;
@@ -56,18 +55,22 @@
                 objectStore.createIndex('imageSub', 'imageSub', { unique: false }); // Subject
             };
             //~~~[on click btnSave Save Record]
-            function _btnSave(onFileSelect) {
-                var data = onFileSelect;
-                console.log(data);
+            function _btnSave(imageSrc) {
+                // Grab current urlImage and make a blob
+                console.log("button");
+                var data = imageSrc,
+                    blob = new Blob([data], { type: 'text/plain' }),
+                    url = $window.URL || $window.webkitURL;
+                    $scope.fileUrl = url.createObjectURL(blob);
+                    //console.log(newFile);
+                // Add blob to IndexedDB
 
-                //var transaction = db.transaction(['imageID'], 'readwrite');
-                //var objectStore = transaction.objectStore('imageID');
-                //objectStore.onsuccess = function (imageSrc) { // checkes if successfull
-                //    console.log("Success");
-                //}
-                //console.log(imageSrc);
-                }
+            }
         });
+        //=============== { Config for file uploader}====================//
+        app.config(['$compileProvider', function ($compileProvider) {
+            $compileProvider.aHrefSanitizationWhitelist(/^\s*(|blob|):/);
+        }]);
         //================ {Paste Image Directive} ======================//
         app.directive("ngFileSelect", function (fileReader, $timeout) {
             return {
