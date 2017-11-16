@@ -22,11 +22,13 @@
         });
         //======== {IndexDB} ======== //
         var request = window.indexedDB.open('mydb.db', 2); // instantiate Indexed DB
-        var db = null;
+        var db;
         //~~~[Checks if user is using an unsupported browser]
         if (!window.indexedDB) {
             window.alert("Your browser doesnt support latest stable version of indexedDB");
-        };
+        } else {
+            console.log("indexedDB is up to date")
+        }
         //~~~[Check indexed db version]
         var dbPromise = idb.open('mydb.db', 2, function (upgraadeDb) {
             // Database migration portion
@@ -44,7 +46,6 @@
                         .createIndex('imageTime', 'imageTime', { unique: false, multiEntry: true });
                     console.log("case3");
             }
-
         });
         ////~~~[Create New DB]
         //request.onupgradeneeded = function (event) {
@@ -56,21 +57,19 @@
         //};
 
         //~~~[on click btnSave Save Record]
-        dbPromise._btnSave = function(imageSrc, dbPromise) {
+        function _btnSave(imageSrc, upgradeDb) {
             // Grab current urlImage and make a blob
             console.log("button");
             var data = imageSrc,
                 blob = new Blob([data], { type: 'text/plain' }),
                 url = $window.URL || $window.webkitURL;
-            $scope.fileUrl = url.createObjectURL(blob);
+            //$scope.fileUrl = url.createObjectURL(blob);
             var newFile = url.createObjectURL(blob);
             console.log(newFile);
             // Add blob to IndexedDB
             db = event.target.result; // Gives read acces to db
             var transaction = db.transaction(['imageID'], "readwrite");
             transaction.objectStore("imageID").put(newFile);
-
-
         }
     });
     //=============== { Config for file uploader}====================//
