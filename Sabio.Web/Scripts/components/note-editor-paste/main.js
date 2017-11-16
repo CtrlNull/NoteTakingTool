@@ -20,18 +20,29 @@
         $scope.$on("fileProgress", function (e, progress) {
             $scope.progress = progress.loaded / progress.total;
         });
-        //======== {IndexDB} ======== //
-        var request = window.indexedDB.open('mydb.db', 2); // instantiate Indexed DB
-        var db;
-        //~~~[Checks if user is using an unsupported browser]
-        if (!window.indexedDB) {
-            window.alert("Your browser doesnt support latest stable version of indexedDB");
-        } else {
-            console.log("indexedDB is up to date")
-        }
-        //~~~[Check indexed db version]
-        var dbPromise = idb.open('mydb.db', 2, function (upgraadeDb) {
-            // Database migration portion
+
+        ////~~~[Create New DB]
+        //request.onupgradeneeded = function (event) {
+        //    console.log("inside on upgrade");
+        //    db = event.target.result; // Gives read acces to db
+        //    var objectStore = db.createObjectStore('imageID', { autoIncrement: true }); // Adds new Field
+        //    // Create Table
+        //    objectStore.
+        //};
+
+        //~~~[on click btnSave Save Record]
+        function _btnSave(upgradeDb, $scope, imageSrc) {
+            //======== {IndexDB} ======== //
+            var DBOpenRequest = window.indexedDB.open('mydb.db', 2); // instantiate Indexed DB
+            
+            //~~~[Checks if user is using an unsupported browser]
+            if (!window.indexedDB) {
+                window.alert("Your browser doesnt support latest stable version of indexedDB");
+            } else {
+                console.log("indexedDB is up to date")
+            }
+            //~~~[Check indexed db version]
+
             switch (upgradeDb.oldVersion) {
                 case 0:
                     var store = upgradeDb.createObjectStore('imageID', { keyPath: 'imagekey', unique: true, autoIncrement: true });
@@ -46,47 +57,33 @@
                         .createIndex('imageTime', 'imageTime', { unique: false, multiEntry: true });
                     console.log("case3");
             }
+            DBOpenRequest.onsuccess = function (event) {
+                console.log("database open");
 
+                // store the result of opening the database in db.
+                var db = DBOpenRequest.result;
+            };
+            //------[[Grab current urlImage and make a blob]]
+            var data = imageSrc,
+                blob = new Blob([data], { type: 'text/plain' }),
+                url = $window.URL || $window.webkitURL;
+            var fileUrl = url.createObjectURL(blob);
+            console.log(fileUrl);
 
-
-        });
-        ////~~~[Create New DB]
-        //request.onupgradeneeded = function (event) {
-        //    console.log("inside on upgrade");
-        //    db = event.target.result; // Gives read acces to db
-        //    var objectStore = db.createObjectStore('imageID', { autoIncrement: true }); // Adds new Field
-        //    // Create Table
-        //    objectStore.
-        //};
-
-        //~~~[on click btnSave Save Record]
-        function _btnSave(imageSrc, event) {
-            var DBOpenRequest = window.indexedDB.open("mydb.db", 2);
-            DBOpenRequest.onsuccess = function (imageSrc, event) {
-                // store the result of opening the database in the db variable.
-                db = DBOpenRequest.result;
-                console.log(DBOpenRequest.result);
-                //------[[Grab current urlImage and make a blob]]
-                var data = imageSrc,
-                    blob = new Blob([data], { type: 'text/plain' }),
-                    url = $window.URL || $window.webkitURL;
-                var newFile = url.createObjectURL(blob);
-                console.log(newFile);
-                //------[[Add blob to IndexedDB]]
-                //var objectStore = IDBDatabase.createObjectStore('imageID', { keyPath: 'imageKey' });
-                //objectStore.createIndex('imageHolder', {unique: false });
-                var transaction = db.transaction(['imageID'], "readwrite");
-                // check if transaction successful
-                transaction.oncomplete = function (event) {
-                    console.log("transaction complete")
-                }
-                var objectStore = transaction.objectStore("imageID");
-                var objectStoreRequest = objectStore.add(newFile[0]);
-                // check if storage worked
-                objectStoreRequest.onsuccess = function (event) {
-                    console.log("success");
-                }
+            //------[[Add blob to IndexedDB]]
+            var transaction = DBOpenRequest.transaction(['imageID'], "readwrite");
+            // check if transaction successful
+            transaction.oncomplete = function (event) {
+                console.log("transaction complete")
             }
+            var objectStore = transaction.objectStore("imageID");
+            var objectStoreRequest = objectStore.add(fileUrl);
+            // check if storage worked
+            objectStoreRequest.onsuccess = function (event) {
+                console.log("success");
+            }
+
+
         }
     });
     //=============== { Config for file uploader}====================//
